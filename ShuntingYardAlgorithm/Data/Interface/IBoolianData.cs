@@ -4,11 +4,9 @@ using System.Text;
 
 namespace ShuntingYardAlgorithm
 {
-    public interface IData
+    public interface IBoolianData : IData
     {
-        EShYAlgorithm.DataType Type { get; set; }
-        int Precedence { get; set; }
+        EShYAlgorithm.BoolianType Type { get; set; }
         bool Value { get; set; }
-        char RawValue { get; set; }
     }
 }

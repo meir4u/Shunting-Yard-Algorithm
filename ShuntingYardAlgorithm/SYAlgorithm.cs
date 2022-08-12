@@ -6,21 +6,29 @@ namespace ShuntingYardAlgorithm
 {
     public class SYAlgorithm
     {
+        private static Lazy<SYAlgorithm> lazy = new Lazy<SYAlgorithm>(()=>new SYAlgorithm(), true);
         private string rawData { get; set; }
         private Stack<IData> operators = new Stack<IData>();
         private Queue<IData> infix = new Queue<IData>();
         private Queue<IData> postfix = new Queue<IData>();
 
-        public SYAlgorithm(string rawData)
+        private SYAlgorithm()
         {
-            this.rawData = rawData;
+
         }
 
-        public bool create()
+        public static bool CalCulate(string rawData)
         {
+            bool result = lazy.Value.getResult(rawData);
+            return result;
+        }
+
+        private bool getResult(string rawData)
+        {
+            this.rawData = rawData;
             infix = createInfix();
             createPostFix();
-            bool calc = CalCulate();
+            bool calc = calCulate();
             return calc;
             //return infix;
         }
@@ -32,7 +40,7 @@ namespace ShuntingYardAlgorithm
 
             for (int i = 0; i < length; i++)
             {
-                IData data = DataFactory.Current.Create(rawData[i]);
+                IData data = TokenFactory.Current.Create(rawData[i]);
                 infix.Enqueue(data);
             }
 
@@ -53,26 +61,26 @@ namespace ShuntingYardAlgorithm
                 postfix.Enqueue(operators.Pop());
             }
         }
-
-        private bool CalCulate()
+        
+        private bool calCulate()
         {
             Queue<IData> resultQueue = new Queue<IData>();
-            while(postfix.Count > 1)
+            while(postfix.Count > 0)
             {
-                while(postfix.Count > 0 && postfix.Peek().Type == EShYAlgorithm.DataType.Data)
+                while(postfix.Count > 0 && postfix.Peek() is IBoolianData)
                 {
                     resultQueue.Enqueue(postfix.Dequeue());
                 }
 
-                while (postfix.Count > 0 && postfix.Peek().Type == EShYAlgorithm.DataType.Operator)
+                while (postfix.Count > 0 && postfix.Peek() is IOperatorData)
                 {
                     if(resultQueue.Count >= 2)
                     {
-                        bool right = resultQueue.Dequeue().Value;
-                        bool left = resultQueue.Dequeue().Value;
-                        char Operator = postfix.Dequeue().RawValue;
+                        bool right = (resultQueue.Dequeue() as IBoolianData).Value;
+                        bool left = (resultQueue.Dequeue() as IBoolianData).Value;
+                        EShYAlgorithm.OperatorType Operator = (postfix.Dequeue() as IOperatorData).Type;
                         bool result;
-                        if(Operator == '&')
+                        if(Operator == EShYAlgorithm.OperatorType.And)
                         {
                             result = left && right;
                         }
@@ -81,7 +89,7 @@ namespace ShuntingYardAlgorithm
                             result = left || right;
                         }
                         char tmpChar = result ? 't' : 'f';
-                        resultQueue.Enqueue(DataFactory.Current.Create(tmpChar));
+                        resultQueue.Enqueue(TokenFactory.Current.Create(tmpChar));
                     }
                     else
                     {
@@ -89,7 +97,7 @@ namespace ShuntingYardAlgorithm
                     }
                 }
             }
-            return resultQueue.Peek().Value;
+            return (resultQueue.Peek() as BoolianData).Value;
         }
 
         private void processToken(IData token)
@@ -98,7 +106,7 @@ namespace ShuntingYardAlgorithm
             {
                 case '&':
                 case '|':
-                    while(operators.Count > 0 && operators.Peek().Type != EShYAlgorithm.DataType.Parentesi && operators.Peek().Precedence >= token.Precedence)
+                    while(operators.Count > 0 && !(operators.Peek() is IParentesiData) && (operators.Peek() as IOperatorData).Precedence >= (token as IOperatorData).Precedence)
                     {
                         postfix.Enqueue(operators.Pop());
                     }
