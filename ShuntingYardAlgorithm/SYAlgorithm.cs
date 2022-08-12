@@ -105,29 +105,33 @@ namespace ShuntingYardAlgorithm
 
         private void processToken(IToken token)
         {
-            switch (token.RawValue)
+            if(token is IOperatorToken)
             {
-                case '&':
-                case '|':
-                    while(operators.Count > 0 && !(operators.Peek() is IParentesiToken) && (operators.Peek() as IOperatorToken).Precedence >= (token as IOperatorToken).Precedence)
-                    {
-                        postfix.Enqueue(operators.Pop());
-                    }
+                while (operators.Count > 0 && !(operators.Peek() is IParentesiToken) && (operators.Peek() as IOperatorToken).Precedence >= (token as IOperatorToken).Precedence)
+                {
+                    postfix.Enqueue(operators.Pop());
+                }
+                operators.Push(token);
+            }
+            else if(token is IParentesiToken)
+            {
+                var tmp = token as IParentesiToken;
+                if (tmp.Type == EShYAlgorithm.ParentesiType.Open)
+                {
                     operators.Push(token);
-                    break;
-                case '(':
-                    operators.Push(token);
-                    break;
-                case ')':
-                    while(operators.Count > 0 && operators.Peek().RawValue != '(')
+                }
+                else
+                {
+                    while (operators.Count > 0 && operators.Peek() is IParentesiToken && (operators.Peek() as IParentesiToken).Type != EShYAlgorithm.ParentesiType.Open)
                     {
                         postfix.Enqueue(operators.Pop());
                     }
                     operators.Pop();
-                    break;
-                default:
-                    postfix.Enqueue(token);
-                    break;
+                }
+            }
+            else
+            {
+                postfix.Enqueue(token);
             }
         }
     }
