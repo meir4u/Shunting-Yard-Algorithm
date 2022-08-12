@@ -1,8 +1,10 @@
-﻿using System;
+﻿using ShuntingYardAlgorithm.Enum;
+using ShuntingYardAlgorithm.Token;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShuntingYardAlgorithm
+namespace ShuntingYardAlgorithm.Factory
 {
     internal class TokenFactory
     {
@@ -13,9 +15,9 @@ namespace ShuntingYardAlgorithm
 
         }
 
-        internal IData Create(char c)
+        internal IToken Create(char c)
         {
-            IData data;
+            IToken data;
             switch (c)
             {
                 case '&':
@@ -41,26 +43,26 @@ namespace ShuntingYardAlgorithm
             return data;
         }
 
-        private IData createParentesiToken(char c)
+        private IToken createParentesiToken(char c)
         {
-            var data = new ParentesiData();
+            var data = new ParentesiToken();
             data.RawValue = c;
             data.Type = (c == '(') ? EShYAlgorithm.ParentesiType.Open : EShYAlgorithm.ParentesiType.Close;
             return data;
         }
 
-        private IData createDataToken(EShYAlgorithm.BoolianType type)
+        private IToken createDataToken(EShYAlgorithm.BoolianType type)
         {
-            var data = new BoolianData();
+            var data = new BoolianToken();
             data.RawValue = EShYAlgorithm.BoolianType.Positive == type ? 't' : 'f';
             data.Type = type;
             data.Value = data.Type == EShYAlgorithm.BoolianType.Positive;
             return data;
         }
 
-        private IData createOperatorToken(char c)
+        private IToken createOperatorToken(char c)
         {
-            var data = new OperatorData();
+            var data = new OperatorToken();
             data.RawValue = c;
             data.Type = (c == '&') ? EShYAlgorithm.OperatorType.And : EShYAlgorithm.OperatorType.Or;
             data.Precedence = (int)data.Type;

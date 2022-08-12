@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ShuntingYardAlgorithm.Enum;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShuntingYardAlgorithm
+namespace ShuntingYardAlgorithm.Token
 {
-    public class ParentesiData : IParentesiData
+    public class ParentesiToken : IParentesiToken
     {
         public int Precedence { get; set; }
         public EShYAlgorithm.ParentesiType Type { get; set; }

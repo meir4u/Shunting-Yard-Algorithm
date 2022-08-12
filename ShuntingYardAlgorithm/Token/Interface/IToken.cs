@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ShuntingYardAlgorithm
 {
-    public interface IData
+    public interface IToken
     {
         char RawValue { get; set; }
     }

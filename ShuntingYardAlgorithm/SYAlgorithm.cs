@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ShuntingYardAlgorithm.Enum;
+using ShuntingYardAlgorithm.Factory;
+using ShuntingYardAlgorithm.Token;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,9 +11,9 @@ namespace ShuntingYardAlgorithm
     {
         private static Lazy<SYAlgorithm> lazy = new Lazy<SYAlgorithm>(()=>new SYAlgorithm(), true);
         private string rawData { get; set; }
-        private Stack<IData> operators = new Stack<IData>();
-        private Queue<IData> infix = new Queue<IData>();
-        private Queue<IData> postfix = new Queue<IData>();
+        private Stack<IToken> operators = new Stack<IToken>();
+        private Queue<IToken> infix = new Queue<IToken>();
+        private Queue<IToken> postfix = new Queue<IToken>();
 
         private SYAlgorithm()
         {
@@ -33,14 +36,14 @@ namespace ShuntingYardAlgorithm
             //return infix;
         }
 
-        private Queue<IData> createInfix()
+        private Queue<IToken> createInfix()
         {
             int length = rawData.Length;
             List<string> qdata = new List<string>();
 
             for (int i = 0; i < length; i++)
             {
-                IData data = TokenFactory.Current.Create(rawData[i]);
+                IToken data = TokenFactory.Current.Create(rawData[i]);
                 infix.Enqueue(data);
             }
 
@@ -51,7 +54,7 @@ namespace ShuntingYardAlgorithm
         {
             while(infix.Count> 0)
             {
-                IData token = infix.Dequeue();
+                IToken token = infix.Dequeue();
 
                 processToken(token);
             }
@@ -64,21 +67,21 @@ namespace ShuntingYardAlgorithm
         
         private bool calCulate()
         {
-            Queue<IData> resultQueue = new Queue<IData>();
+            Queue<IToken> resultQueue = new Queue<IToken>();
             while(postfix.Count > 0)
             {
-                while(postfix.Count > 0 && postfix.Peek() is IBoolianData)
+                while(postfix.Count > 0 && postfix.Peek() is IBoolianToken)
                 {
                     resultQueue.Enqueue(postfix.Dequeue());
                 }
 
-                while (postfix.Count > 0 && postfix.Peek() is IOperatorData)
+                while (postfix.Count > 0 && postfix.Peek() is IOperatorToken)
                 {
                     if(resultQueue.Count >= 2)
                     {
-                        bool right = (resultQueue.Dequeue() as IBoolianData).Value;
-                        bool left = (resultQueue.Dequeue() as IBoolianData).Value;
-                        EShYAlgorithm.OperatorType Operator = (postfix.Dequeue() as IOperatorData).Type;
+                        bool right = (resultQueue.Dequeue() as IBoolianToken).Value;
+                        bool left = (resultQueue.Dequeue() as IBoolianToken).Value;
+                        EShYAlgorithm.OperatorType Operator = (postfix.Dequeue() as IOperatorToken).Type;
                         bool result;
                         if(Operator == EShYAlgorithm.OperatorType.And)
                         {
@@ -97,16 +100,16 @@ namespace ShuntingYardAlgorithm
                     }
                 }
             }
-            return (resultQueue.Peek() as BoolianData).Value;
+            return (resultQueue.Peek() as BoolianToken).Value;
         }
 
-        private void processToken(IData token)
+        private void processToken(IToken token)
         {
             switch (token.RawValue)
             {
                 case '&':
                 case '|':
-                    while(operators.Count > 0 && !(operators.Peek() is IParentesiData) && (operators.Peek() as IOperatorData).Precedence >= (token as IOperatorData).Precedence)
+                    while(operators.Count > 0 && !(operators.Peek() is IParentesiToken) && (operators.Peek() as IOperatorToken).Precedence >= (token as IOperatorToken).Precedence)
                     {
                         postfix.Enqueue(operators.Pop());
                     }

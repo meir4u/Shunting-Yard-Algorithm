@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ShuntingYardAlgorithm.Enum;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShuntingYardAlgorithm
+namespace ShuntingYardAlgorithm.Token
 {
-    public class BoolianData : IBoolianData
+    public class BoolianToken : IBoolianToken
     {
         public EShYAlgorithm.BoolianType Type { get; set; }
         public bool Value { get; set; }

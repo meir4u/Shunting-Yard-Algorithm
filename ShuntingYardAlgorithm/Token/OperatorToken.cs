@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ShuntingYardAlgorithm.Enum;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShuntingYardAlgorithm
+namespace ShuntingYardAlgorithm.Token
 {
-    public class OperatorData : IOperatorData
+    public class OperatorToken : IOperatorToken
     {
         public int Precedence { get; set; }
         public EShYAlgorithm.OperatorType Type { get; set; }
