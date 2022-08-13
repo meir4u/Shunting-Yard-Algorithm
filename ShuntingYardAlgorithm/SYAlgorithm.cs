@@ -20,7 +20,7 @@ namespace ShuntingYardAlgorithm
 
         }
 
-        public static bool CalCulate(string rawData)
+        public static bool Calculate(string rawData)
         {
             bool result = lazy.Value.getResult(rawData);
             return result;
@@ -31,7 +31,7 @@ namespace ShuntingYardAlgorithm
             this.rawData = rawData;
             infix = createInfix();
             createPostFix();
-            bool calc = calCulate();
+            bool calc = calculate();
             return calc;
             //return infix;
         }
@@ -65,7 +65,7 @@ namespace ShuntingYardAlgorithm
             }
         }
         
-        private bool calCulate()
+        private bool calculate()
         {
             Queue<IToken> resultQueue = new Queue<IToken>();
             while(postfix.Count > 0)
