@@ -7,7 +7,7 @@ namespace ShuntingYard
     {
         static void Main(string[] args)
         {
-            string raw = "(T&F|T)&(F&T|F)";
+            string raw = "(T&F|T)|(F&T|F)";
             string raw2 = "T&F&T&F|T&F&F&F|T|F&F|T&T|F";
 
             var data = SYAlgorithm.Calculate(raw);

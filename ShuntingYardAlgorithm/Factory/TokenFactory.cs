@@ -1,4 +1,5 @@
 ﻿using ShuntingYardAlgorithm.Enum;
+using ShuntingYardAlgorithm.Factory.Handler.TokenFactory;
 using ShuntingYardAlgorithm.Token;
 using System;
 using System.Collections.Generic;
@@ -28,55 +29,25 @@ namespace ShuntingYardAlgorithm.Factory
         private IToken create(char c)
         {
             IToken data;
-            switch (c)
-            {
-                case '&':
-                case '|':
-                    data = createOperatorToken(c);
-                    break;
-                case '(':
-                case ')':
-                    data = createParentesiToken(c);
-                    break;
-                case 'T':
-                case 't':
-                    data = createDataToken(EShYAlgorithm.BoolianType.Positive);
-                    break;
-                case 'F':
-                case 'f':
-                    data = createDataToken(EShYAlgorithm.BoolianType.Negative);
-                    break;
-                default:
-                    throw new Exception($"Not Supported Token:'{c}'");
-            }
+
+            var handler = getHandler();
+
+            data = handler.HandleReqeust(c);
 
             return data;
         }
 
-        private IToken createParentesiToken(char c)
+        private TokenFactoryHandler getHandler()
         {
-            var data = new ParentesiToken();
-            data.RawValue = c;
-            data.Type = (c == '(') ? EShYAlgorithm.ParentesiType.Open : EShYAlgorithm.ParentesiType.Close;
-            return data;
+            TokenFactoryHandler h1 = new OperatorTokenFactoryHandler();
+            TokenFactoryHandler h2 = new ParentasiTokenFactoryHandler();
+            TokenFactoryHandler h3 = new BoolianTokenFactoryHandler();
+
+            h1.SetSuccessor(h2);
+            h2.SetSuccessor(h3);
+
+            return h1;
         }
 
-        private IToken createDataToken(EShYAlgorithm.BoolianType type)
-        {
-            var data = new BoolianToken();
-            data.RawValue = EShYAlgorithm.BoolianType.Positive == type ? 't' : 'f';
-            data.Type = type;
-            data.Value = data.Type == EShYAlgorithm.BoolianType.Positive;
-            return data;
-        }
-
-        private IToken createOperatorToken(char c)
-        {
-            var data = new OperatorToken();
-            data.RawValue = c;
-            data.Type = (c == '&') ? EShYAlgorithm.OperatorType.And : EShYAlgorithm.OperatorType.Or;
-            data.Precedence = (int)data.Type;
-            return data;
-        }
     }
 }

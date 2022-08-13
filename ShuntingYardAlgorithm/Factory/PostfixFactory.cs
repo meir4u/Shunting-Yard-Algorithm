@@ -68,7 +68,7 @@ namespace ShuntingYardAlgorithm.Factory
                 }
                 else
                 {
-                    while (operatorToken.Count > 0 && operatorToken.Peek() is IParentesiToken && (operatorToken.Peek() as IParentesiToken).Type != EShYAlgorithm.ParentesiType.Open)
+                    while (operatorToken.Count > 0 && (operatorToken.Peek() is IParentesiToken) == false)
                     {
                         postfix.Enqueue(operatorToken.Pop());
                     }
