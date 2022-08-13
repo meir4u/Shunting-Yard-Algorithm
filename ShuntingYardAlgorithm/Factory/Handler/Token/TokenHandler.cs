@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShuntingYardAlgorithm.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -23,7 +24,7 @@ namespace ShuntingYardAlgorithm.Factory.Handler.Token
             }
             else
             {
-                throw new Exception($"Not Supported Token:'{request}'");
+                throw new TokenNotSupportedException($"Not Supported Token:'{request}'");
             }
 
             return token;

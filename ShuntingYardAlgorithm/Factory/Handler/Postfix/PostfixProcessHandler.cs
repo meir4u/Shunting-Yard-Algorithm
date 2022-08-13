@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShuntingYardAlgorithm.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -22,7 +23,7 @@ namespace ShuntingYardAlgorithm.Factory.Handler.Postfix
             }
             else
             {
-                throw new Exception($"Not Supported process handler");
+                throw new ProcessHandlerNotSupportedException($"Not Supported process handler");
             }
         }
     }
