@@ -10,10 +10,6 @@ namespace ShuntingYardAlgorithm
     public class SYAlgorithm
     {
         private static Lazy<SYAlgorithm> lazy = new Lazy<SYAlgorithm>(()=>new SYAlgorithm(), true);
-        private string rawData { get; set; }
-        private Stack<IToken> operators = new Stack<IToken>();
-        private Queue<IToken> infix = new Queue<IToken>();
-        private Queue<IToken> postfix = new Queue<IToken>();
 
         private SYAlgorithm()
         {
@@ -28,111 +24,12 @@ namespace ShuntingYardAlgorithm
 
         private bool getResult(string rawData)
         {
-            this.rawData = rawData;
-            infix = createInfix();
-            createPostFix();
-            bool calc = calculate();
+            Queue<IToken> infix = InfixFactory.create(rawData);
+            Queue<IToken> postfix = PostfixFactory.Create(infix);
+            bool calc = CalculatorFactory.Calculate(postfix);
+
             return calc;
-            //return infix;
-        }
+        } 
 
-        private Queue<IToken> createInfix()
-        {
-            int length = rawData.Length;
-            List<string> qdata = new List<string>();
-
-            for (int i = 0; i < length; i++)
-            {
-                IToken data = TokenFactory.Current.Create(rawData[i]);
-                infix.Enqueue(data);
-            }
-
-            return infix;
-        }
-
-        private void createPostFix()
-        {
-            while(infix.Count> 0)
-            {
-                IToken token = infix.Dequeue();
-
-                processToken(token);
-            }
-
-            while (operators.Count > 0)
-            {
-                postfix.Enqueue(operators.Pop());
-            }
-        }
-        
-        private bool calculate()
-        {
-            Queue<IToken> resultQueue = new Queue<IToken>();
-            while(postfix.Count > 0)
-            {
-                while(postfix.Count > 0 && postfix.Peek() is IBoolianToken)
-                {
-                    resultQueue.Enqueue(postfix.Dequeue());
-                }
-
-                while (postfix.Count > 0 && postfix.Peek() is IOperatorToken)
-                {
-                    if(resultQueue.Count >= 2)
-                    {
-                        bool right = (resultQueue.Dequeue() as IBoolianToken).Value;
-                        bool left = (resultQueue.Dequeue() as IBoolianToken).Value;
-                        EShYAlgorithm.OperatorType Operator = (postfix.Dequeue() as IOperatorToken).Type;
-                        bool result;
-                        if(Operator == EShYAlgorithm.OperatorType.And)
-                        {
-                            result = left && right;
-                        }
-                        else
-                        {
-                            result = left || right;
-                        }
-                        char tmpChar = result ? 't' : 'f';
-                        resultQueue.Enqueue(TokenFactory.Current.Create(tmpChar));
-                    }
-                    else
-                    {
-                        throw new Exception("error!");
-                    }
-                }
-            }
-            return (resultQueue.Peek() as BoolianToken).Value;
-        }
-
-        private void processToken(IToken token)
-        {
-            if(token is IOperatorToken)
-            {
-                while (operators.Count > 0 && !(operators.Peek() is IParentesiToken) && (operators.Peek() as IOperatorToken).Precedence >= (token as IOperatorToken).Precedence)
-                {
-                    postfix.Enqueue(operators.Pop());
-                }
-                operators.Push(token);
-            }
-            else if(token is IParentesiToken)
-            {
-                var tmp = token as IParentesiToken;
-                if (tmp.Type == EShYAlgorithm.ParentesiType.Open)
-                {
-                    operators.Push(token);
-                }
-                else
-                {
-                    while (operators.Count > 0 && operators.Peek() is IParentesiToken && (operators.Peek() as IParentesiToken).Type != EShYAlgorithm.ParentesiType.Open)
-                    {
-                        postfix.Enqueue(operators.Pop());
-                    }
-                    operators.Pop();
-                }
-            }
-            else
-            {
-                postfix.Enqueue(token);
-            }
-        }
     }
 }
