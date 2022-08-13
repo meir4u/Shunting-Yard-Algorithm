@@ -9,6 +9,7 @@ namespace ShuntingYardAlgorithm.Factory
     internal class CalculatorFactory
     {
         private static Lazy<CalculatorFactory> lazy = new Lazy<CalculatorFactory>(()=>new CalculatorFactory(), true);
+        private static CalculatorFactory instance { get => lazy.Value; }
 
         private CalculatorFactory()
         {
@@ -17,10 +18,12 @@ namespace ShuntingYardAlgorithm.Factory
 
         public static bool Calculate(Queue<IToken> postfix)
         {
-            bool result = lazy.Value.calculate(postfix);
+            lock (instance)
+            {
+                bool result = instance.calculate(postfix);
 
-
-            return result;
+                return result;
+            }
         }
 
         private bool calculate(Queue<IToken> postfix)
@@ -49,7 +52,7 @@ namespace ShuntingYardAlgorithm.Factory
         private void resultToResultQueue(bool result, Queue<IToken> resultQueue)
         {
             char tmpChar = result ? 't' : 'f';
-            resultQueue.Enqueue(TokenFactory.Current.Create(tmpChar));
+            resultQueue.Enqueue(TokenFactory.Create(tmpChar));
         }
 
         private bool getResult(Queue<IToken> postfix, Queue<IToken> resultQueue)

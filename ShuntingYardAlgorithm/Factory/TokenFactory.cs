@@ -9,6 +9,8 @@ namespace ShuntingYardAlgorithm.Factory
     internal class TokenFactory
     {
         private static Lazy<TokenFactory> lazy = new Lazy<TokenFactory>(()=>new TokenFactory(), true);
+        private static TokenFactory instance { get => lazy.Value; }
+
         private TokenFactory()
         {
 
@@ -16,8 +18,11 @@ namespace ShuntingYardAlgorithm.Factory
 
         public static IToken Create(char c)
         {
-            var result = lazy.Value.create(c);
-            return result;
+            lock (instance)
+            {
+                var result = instance.create(c);
+                return result;
+            }
         }
 
         private IToken create(char c)

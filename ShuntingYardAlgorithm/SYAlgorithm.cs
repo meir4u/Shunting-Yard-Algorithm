@@ -10,6 +10,7 @@ namespace ShuntingYardAlgorithm
     public class SYAlgorithm
     {
         private static Lazy<SYAlgorithm> lazy = new Lazy<SYAlgorithm>(()=>new SYAlgorithm(), true);
+        private static SYAlgorithm instance { get => lazy.Value; }
 
         private SYAlgorithm()
         {
@@ -18,8 +19,11 @@ namespace ShuntingYardAlgorithm
 
         public static bool Calculate(string rawData)
         {
-            bool result = lazy.Value.getResult(rawData);
-            return result;
+            lock (instance)
+            {
+                bool result = instance.getResult(rawData);
+                return result;
+            }
         }
 
         private bool getResult(string rawData)

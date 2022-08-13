@@ -7,6 +7,7 @@ namespace ShuntingYardAlgorithm.Factory
     internal class InfixFactory
     {
         private static Lazy<InfixFactory> lazy = new Lazy<InfixFactory>(()=>new InfixFactory(), true);
+        private static InfixFactory instance { get => lazy.Value; }
 
         private InfixFactory()
         {
@@ -14,8 +15,11 @@ namespace ShuntingYardAlgorithm.Factory
         }
         internal static Queue<IToken> create(string rawData)
         {
-            var result = lazy.Value.createInfix(rawData);
-            return result;
+            lock(instance)
+            {
+                var result = instance.createInfix(rawData);
+                return result;
+            }
         } 
         private Queue<IToken> createInfix(string rawData)
         {

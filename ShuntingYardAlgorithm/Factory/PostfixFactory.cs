@@ -8,6 +8,8 @@ namespace ShuntingYardAlgorithm.Factory
     internal class PostfixFactory
     {
         private static Lazy<PostfixFactory> lazy = new Lazy<PostfixFactory>(()=>new PostfixFactory(), true);
+        private static PostfixFactory instance { get => lazy.Value; }
+
         private Stack<IToken> operatorToken = new Stack<IToken>();
         private Queue<IToken> postfix = new Queue<IToken>();
 
@@ -18,9 +20,12 @@ namespace ShuntingYardAlgorithm.Factory
 
         public static Queue<IToken> Create(Queue<IToken> infix)
         {
-            var result = lazy.Value.createPostFix(infix);
-            lazy.Value.resetPostfix();
-            return result;
+            lock (instance)
+            {
+                var result = instance.createPostFix(infix);
+                lazy.Value.resetPostfix();
+                return result;
+            }
         }
 
         private void resetPostfix()
