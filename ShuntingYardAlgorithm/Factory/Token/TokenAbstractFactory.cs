@@ -1,5 +1,5 @@
 ﻿using ShuntingYardAlgorithm.Enum;
-using ShuntingYardAlgorithm.Factory.Handler.TokenFactory;
+using ShuntingYardAlgorithm.Factory.Handler.Token;
 using ShuntingYardAlgorithm.Token;
 using System;
 using System.Collections.Generic;
@@ -7,12 +7,12 @@ using System.Text;
 
 namespace ShuntingYardAlgorithm.Factory
 {
-    internal class TokenFactory
+    internal class TokenAbstractFactory
     {
-        private static Lazy<TokenFactory> lazy = new Lazy<TokenFactory>(()=>new TokenFactory(), true);
-        private static TokenFactory instance { get => lazy.Value; }
+        private static Lazy<TokenAbstractFactory> lazy = new Lazy<TokenAbstractFactory>(()=>new TokenAbstractFactory(), true);
+        private static TokenAbstractFactory instance { get => lazy.Value; }
 
-        private TokenFactory()
+        private TokenAbstractFactory()
         {
 
         }
@@ -37,11 +37,11 @@ namespace ShuntingYardAlgorithm.Factory
             return data;
         }
 
-        private TokenFactoryHandler getHandler()
+        private TokenHandler getHandler()
         {
-            TokenFactoryHandler h1 = new OperatorTokenFactoryHandler();
-            TokenFactoryHandler h2 = new ParentasiTokenFactoryHandler();
-            TokenFactoryHandler h3 = new BoolianTokenFactoryHandler();
+            TokenHandler h1 = new OperatorTokenHandler();
+            TokenHandler h2 = new ParentasiTokenHandler();
+            TokenHandler h3 = new BoolianTokenHandler();
 
             h1.SetSuccessor(h2);
             h2.SetSuccessor(h3);

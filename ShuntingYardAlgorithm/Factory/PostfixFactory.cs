@@ -1,4 +1,5 @@
 ﻿using ShuntingYardAlgorithm.Enum;
+using ShuntingYardAlgorithm.Factory.Handler.Postfix;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -51,34 +52,20 @@ namespace ShuntingYardAlgorithm.Factory
 
         private void processToken(IToken token)
         {
-            if (token is IOperatorToken)
-            {
-                while (operatorToken.Count > 0 && !(operatorToken.Peek() is IParentesiToken) && (operatorToken.Peek() as IOperatorToken).Precedence >= (token as IOperatorToken).Precedence)
-                {
-                    postfix.Enqueue(operatorToken.Pop());
-                }
-                operatorToken.Push(token);
-            }
-            else if (token is IParentesiToken)
-            {
-                var tmp = token as IParentesiToken;
-                if (tmp.Type == EShYAlgorithm.ParentesiType.Open)
-                {
-                    operatorToken.Push(token);
-                }
-                else
-                {
-                    while (operatorToken.Count > 0 && (operatorToken.Peek() is IParentesiToken) == false)
-                    {
-                        postfix.Enqueue(operatorToken.Pop());
-                    }
-                    operatorToken.Pop();
-                }
-            }
-            else
-            {
-                postfix.Enqueue(token);
-            }
+            var handler = getHandler();
+
+            handler.HandleReqeust(token, postfix, operatorToken);
+        }
+
+        private PostfixProcessHandler getHandler()
+        {
+            PostfixProcessHandler h1 = new BoolianPostfixProcessHandler();
+            PostfixProcessHandler h2 = new OperatorPostfixProcessHandler();
+            PostfixProcessHandler h3 = new ParentesiPostfixProcessHandler();
+
+            h1.SetSuccessor(h2);
+            h2.SetSuccessor(h3);
+            return h1;
         }
     }
 }

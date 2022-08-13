@@ -52,7 +52,7 @@ namespace ShuntingYardAlgorithm.Factory
         private void resultToResultQueue(bool result, Queue<IToken> resultQueue)
         {
             char tmpChar = result ? 't' : 'f';
-            resultQueue.Enqueue(TokenFactory.Create(tmpChar));
+            resultQueue.Enqueue(TokenAbstractFactory.Create(tmpChar));
         }
 
         private bool getResult(Queue<IToken> postfix, Queue<IToken> resultQueue)

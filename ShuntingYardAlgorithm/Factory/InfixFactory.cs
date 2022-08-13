@@ -28,7 +28,7 @@ namespace ShuntingYardAlgorithm.Factory
 
             for (int i = 0; i < length; i++)
             {
-                IToken data = TokenFactory.Create(rawData[i]);
+                IToken data = TokenAbstractFactory.Create(rawData[i]);
                 infix.Enqueue(data);
             }
 

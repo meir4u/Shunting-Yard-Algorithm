@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShuntingYardAlgorithm.Factory.Handler.TokenFactory
+namespace ShuntingYardAlgorithm.Factory.Handler.Token
 {
-    internal abstract class TokenFactoryHandler
+    internal abstract class TokenHandler
     {
-        protected TokenFactoryHandler successor = null;
-        internal void SetSuccessor(TokenFactoryHandler successor)
+        protected TokenHandler successor = null;
+        internal void SetSuccessor(TokenHandler successor)
         {
             this.successor = successor;
         }
