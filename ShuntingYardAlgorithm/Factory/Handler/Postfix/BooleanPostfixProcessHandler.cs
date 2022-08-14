@@ -4,11 +4,11 @@ using System.Text;
 
 namespace ShuntingYardAlgorithm.Factory.Handler.Postfix
 {
-    internal class BoolianPostfixProcessHandler : PostfixProcessHandler
+    internal class BooleanPostfixProcessHandler : PostfixProcessHandler
     {
         internal override void HandleReqeust(IToken token, Queue<IToken> postfix, Stack<IToken> operatorToken)
         {
-            if (token is IBoolianToken)
+            if (token is IBooleanToken)
             {
                 postfix.Enqueue(token);
             }

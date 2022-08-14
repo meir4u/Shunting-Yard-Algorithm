@@ -7,17 +7,17 @@ using System.Text;
 
 namespace ShuntingYardAlgorithm.Factory.Handler.Token
 {
-    internal class BoolianTokenHandler : TokenHandler
+    internal class BooleanTokenHandler : TokenHandler
     {
         internal override IToken HandleReqeust(char request)
         {
             IToken token;
             if (request == 't' || request == 'T')
             {
-                token = BoolianTokenFactory.Create(EShYAlgorithm.BoolianType.Positive);
+                token = BooleanTokenFactory.Create(EShYAlgorithm.BooleanType.Positive);
             }else if(request == 'f' || request == 'F')
             {
-                token = BoolianTokenFactory.Create(EShYAlgorithm.BoolianType.Negative);
+                token = BooleanTokenFactory.Create(EShYAlgorithm.BooleanType.Negative);
             }
             else
             {

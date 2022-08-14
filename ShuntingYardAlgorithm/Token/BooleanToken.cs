@@ -5,9 +5,9 @@ using System.Text;
 
 namespace ShuntingYardAlgorithm.Token
 {
-    public class BoolianToken : IBoolianToken
+    public class BooleanToken : IBooleanToken
     {
-        public EShYAlgorithm.BoolianType Type { get; set; }
+        public EShYAlgorithm.BooleanType Type { get; set; }
         public bool Value { get; set; }
         public char RawValue { get; set; }
     }

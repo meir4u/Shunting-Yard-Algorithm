@@ -59,7 +59,7 @@ namespace ShuntingYardAlgorithm.Factory
 
         private PostfixProcessHandler getHandler()
         {
-            PostfixProcessHandler h1 = new BoolianPostfixProcessHandler();
+            PostfixProcessHandler h1 = new BooleanPostfixProcessHandler();
             PostfixProcessHandler h2 = new OperatorPostfixProcessHandler();
             PostfixProcessHandler h3 = new ParentesiPostfixProcessHandler();
 

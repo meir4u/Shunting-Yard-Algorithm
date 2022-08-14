@@ -46,7 +46,7 @@ namespace ShuntingYardAlgorithm.Factory
                     }
                 }
             }
-            return (resultQueue.Peek() as BoolianToken).Value;
+            return (resultQueue.Peek() as BooleanToken).Value;
         }
 
         private void resultToResultQueue(bool result, Queue<IToken> resultQueue)
@@ -58,8 +58,8 @@ namespace ShuntingYardAlgorithm.Factory
         private bool getResult(Queue<IToken> postfix, Queue<IToken> resultQueue)
         {
             bool result;
-            bool right = (resultQueue.Dequeue() as IBoolianToken).Value;
-            bool left = (resultQueue.Dequeue() as IBoolianToken).Value;
+            bool right = (resultQueue.Dequeue() as IBooleanToken).Value;
+            bool left = (resultQueue.Dequeue() as IBooleanToken).Value;
             EShYAlgorithm.OperatorType Operator = (postfix.Dequeue() as IOperatorToken).Type;
             if (Operator == EShYAlgorithm.OperatorType.And)
             {
@@ -74,7 +74,7 @@ namespace ShuntingYardAlgorithm.Factory
 
         private void enqueueBoolianTokens(Queue<IToken> postfix, Queue<IToken> resultQueue)
         {
-            while (postfix.Count > 0 && postfix.Peek() is IBoolianToken)
+            while (postfix.Count > 0 && postfix.Peek() is IBooleanToken)
             {
                 resultQueue.Enqueue(postfix.Dequeue());
             }

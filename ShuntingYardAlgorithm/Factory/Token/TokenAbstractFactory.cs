@@ -41,7 +41,7 @@ namespace ShuntingYardAlgorithm.Factory
         {
             TokenHandler h1 = new OperatorTokenHandler();
             TokenHandler h2 = new ParentasiTokenHandler();
-            TokenHandler h3 = new BoolianTokenHandler();
+            TokenHandler h3 = new BooleanTokenHandler();
 
             h1.SetSuccessor(h2);
             h2.SetSuccessor(h3);
