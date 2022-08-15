@@ -46,7 +46,7 @@ namespace ShuntingYardAlgorithm.Factory
                     }
                 }
             }
-            return (resultQueue.Peek() as BoolianToken).Value;
+            return (resultQueue.Peek() as BooleanToken).Value;
         }
 
         private void resultToResultQueue(bool result, Stack<IToken> resultQueue)
@@ -74,7 +74,7 @@ namespace ShuntingYardAlgorithm.Factory
 
         private void enqueueBoolianTokens(Queue<IToken> postfix, Stack<IToken> resultQueue)
         {
-            while (postfix.Count > 0 && postfix.Peek() is IBoolianToken)
+            while (postfix.Count > 0 && postfix.Peek() is IBooleanToken)
             {
                 resultQueue.Push(postfix.Dequeue());
             }

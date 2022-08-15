@@ -6,12 +6,12 @@ using System.Text;
 
 namespace ShuntingYardAlgorithm.Factory.Token
 {
-    internal class BoolianTokenFactory
+    internal class BooleanTokenFactory
     {
-        private static Lazy<BoolianTokenFactory> lazy = new Lazy<BoolianTokenFactory>(() => new BoolianTokenFactory(), true);
-        private static BoolianTokenFactory instance { get => lazy.Value; }
+        private static Lazy<BooleanTokenFactory> lazy = new Lazy<BooleanTokenFactory>(() => new BooleanTokenFactory(), true);
+        private static BooleanTokenFactory instance { get => lazy.Value; }
 
-        private BoolianTokenFactory()
+        private BooleanTokenFactory()
         {
 
         }
@@ -25,7 +25,7 @@ namespace ShuntingYardAlgorithm.Factory.Token
             }
         }
 
-        internal static IToken Create(EShYAlgorithm.BoolianType type)
+        internal static IToken Create(EShYAlgorithm.BooleanType type)
         {
             lock (instance)
             {
@@ -34,12 +34,12 @@ namespace ShuntingYardAlgorithm.Factory.Token
             }
         }
 
-        protected IToken create(EShYAlgorithm.BoolianType type)
+        protected IToken create(EShYAlgorithm.BooleanType type)
         {
-            var data = new BoolianToken();
-            data.RawValue = EShYAlgorithm.BoolianType.Positive == type ? 't' : 'f';
+            var data = new BooleanToken();
+            data.RawValue = EShYAlgorithm.BooleanType.Positive == type ? 't' : 'f';
             data.Type = type;
-            data.Value = data.Type == EShYAlgorithm.BoolianType.Positive;
+            data.Value = data.Type == EShYAlgorithm.BooleanType.Positive;
             return data;
         }
 
@@ -50,11 +50,11 @@ namespace ShuntingYardAlgorithm.Factory.Token
             {
                 case 'T':
                 case 't':
-                    token = create(EShYAlgorithm.BoolianType.Positive);
+                    token = create(EShYAlgorithm.BooleanType.Positive);
                     break;
                 case 'F':
                 case 'f':
-                    token = create(EShYAlgorithm.BoolianType.Negative);
+                    token = create(EShYAlgorithm.BooleanType.Negative);
                     break;
                 default:
                     throw new Exception("Token not supported!");

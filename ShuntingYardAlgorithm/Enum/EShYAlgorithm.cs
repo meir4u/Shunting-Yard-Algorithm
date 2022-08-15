@@ -18,7 +18,7 @@ namespace ShuntingYardAlgorithm.Enum
             Close
         }
 
-        public enum BoolianType
+        public enum BooleanType
         {
             Positive,
             Negative
