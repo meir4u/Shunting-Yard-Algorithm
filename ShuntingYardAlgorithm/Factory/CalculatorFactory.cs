@@ -28,7 +28,7 @@ namespace ShuntingYardAlgorithm.Factory
 
         private bool calculate(Queue<IToken> postfix)
         {
-            Queue<IToken> resultQueue = new Queue<IToken>();
+            Stack<IToken> resultQueue = new Stack<IToken>();
             while (postfix.Count > 0)
             {
                 enqueueBoolianTokens(postfix, resultQueue);
@@ -49,17 +49,17 @@ namespace ShuntingYardAlgorithm.Factory
             return (resultQueue.Peek() as BoolianToken).Value;
         }
 
-        private void resultToResultQueue(bool result, Queue<IToken> resultQueue)
+        private void resultToResultQueue(bool result, Stack<IToken> resultQueue)
         {
             char tmpChar = result ? 't' : 'f';
-            resultQueue.Enqueue(TokenAbstractFactory.Create(tmpChar));
+            resultQueue.Push(TokenAbstractFactory.Create(tmpChar));
         }
 
-        private bool getResult(Queue<IToken> postfix, Queue<IToken> resultQueue)
+        private bool getResult(Queue<IToken> postfix, Stack<IToken> resultQueue)
         {
             bool result;
-            bool right = (resultQueue.Dequeue() as IBoolianToken).Value;
-            bool left = (resultQueue.Dequeue() as IBoolianToken).Value;
+            bool right = (resultQueue.Pop() as IBoolianToken).Value;
+            bool left = (resultQueue.Pop() as IBoolianToken).Value;
             EShYAlgorithm.OperatorType Operator = (postfix.Dequeue() as IOperatorToken).Type;
             if (Operator == EShYAlgorithm.OperatorType.And)
             {
@@ -72,11 +72,11 @@ namespace ShuntingYardAlgorithm.Factory
             return result;
         }
 
-        private void enqueueBoolianTokens(Queue<IToken> postfix, Queue<IToken> resultQueue)
+        private void enqueueBoolianTokens(Queue<IToken> postfix, Stack<IToken> resultQueue)
         {
             while (postfix.Count > 0 && postfix.Peek() is IBoolianToken)
             {
-                resultQueue.Enqueue(postfix.Dequeue());
+                resultQueue.Push(postfix.Dequeue());
             }
         }
     }
