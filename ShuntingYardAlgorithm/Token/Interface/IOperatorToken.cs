@@ -7,7 +7,7 @@ namespace ShuntingYardAlgorithm
 {
     public interface IOperatorToken : IToken
     {
-        EShYAlgorithm.OperatorType Type { get; set; }
+        EOperator.OperatorType Type { get; set; }
         int Precedence { get; set; }
     }
 }

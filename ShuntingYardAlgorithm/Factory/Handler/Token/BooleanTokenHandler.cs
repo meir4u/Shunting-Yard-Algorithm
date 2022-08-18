@@ -14,10 +14,11 @@ namespace ShuntingYardAlgorithm.Factory.Handler.Token
             IToken token;
             if (request == 't' || request == 'T')
             {
-                token = BooleanTokenFactory.Create(EShYAlgorithm.BooleanType.Positive);
-            }else if(request == 'f' || request == 'F')
+                token = BooleanTokenFactory.Create(EOperator.BooleanType.Positive);
+            }
+            else if(request == 'f' || request == 'F')
             {
-                token = BooleanTokenFactory.Create(EShYAlgorithm.BooleanType.Negative);
+                token = BooleanTokenFactory.Create(EOperator.BooleanType.Negative);
             }
             else
             {

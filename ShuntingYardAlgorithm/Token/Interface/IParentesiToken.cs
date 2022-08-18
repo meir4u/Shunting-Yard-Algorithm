@@ -7,7 +7,7 @@ namespace ShuntingYardAlgorithm
 {
     public interface IParentesiToken : IToken
     {
-        EShYAlgorithm.ParentesiType Type { get; set; }
+        EParentesi.ParentesiState Type { get; set; }
         int Precedence { get; set; }
     }
 }

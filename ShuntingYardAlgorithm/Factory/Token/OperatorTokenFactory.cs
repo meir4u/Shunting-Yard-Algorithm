@@ -1,4 +1,5 @@
-﻿using ShuntingYardAlgorithm.Enum;
+﻿using ShuntingYardAlgorithm.Config;
+using ShuntingYardAlgorithm.Enum;
 using ShuntingYardAlgorithm.Token;
 using System;
 using System.Collections.Generic;
@@ -28,8 +29,8 @@ namespace ShuntingYardAlgorithm.Factory.Token
         {
             var data = new OperatorToken();
             data.RawValue = c;
-            data.Type = (c == '&') ? EShYAlgorithm.OperatorType.And : EShYAlgorithm.OperatorType.Or;
-            data.Precedence = (int)data.Type;
+            data.Type = OperatorTokenConfig.GetOperatorType(c.ToString());
+            data.Precedence = OperatorTokenConfig.GetPrecedence(data.Type);
             return data;
         }
     }

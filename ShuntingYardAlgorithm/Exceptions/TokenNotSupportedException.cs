@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ShuntingYardAlgorithm.Exceptions
 {
-    internal class TokenNotSupportedException : Exception
+    internal class TokenNotSupportedException : System.Exception
     {
         public TokenNotSupportedException()
         {
@@ -15,7 +15,7 @@ namespace ShuntingYardAlgorithm.Exceptions
         {
         }
 
-        public TokenNotSupportedException(string message, Exception inner)
+        public TokenNotSupportedException(string message, System.Exception inner)
             : base(message, inner)
         {
         }

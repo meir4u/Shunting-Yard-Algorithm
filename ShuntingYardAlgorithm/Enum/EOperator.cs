@@ -4,22 +4,25 @@ using System.Text;
 
 namespace ShuntingYardAlgorithm.Enum
 {
-    public class EShYAlgorithm
+    public class EOperator
     {
         public enum OperatorType
         {
+            None = 0,
             Or = 1,
             And = 2
         }
 
-        public enum ParentesiType
+        public enum Associative
         {
-            Open = 0,
-            Close
+            None = 0,
+            Left,
+            Right
         }
 
         public enum BooleanType
         {
+            None = 0,
             Positive,
             Negative
         }

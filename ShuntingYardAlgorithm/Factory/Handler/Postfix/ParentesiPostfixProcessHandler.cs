@@ -12,7 +12,7 @@ namespace ShuntingYardAlgorithm.Factory.Handler.Postfix
             if (token is IParentesiToken)
             {
                 var tmp = token as IParentesiToken;
-                if (tmp.Type == EShYAlgorithm.ParentesiType.Open)
+                if (tmp.Type == EParentesi.ParentesiState.Open)
                 {
                     operatorToken.Push(token);
                 }

@@ -29,7 +29,7 @@ namespace ShuntingYardAlgorithm.Factory.Token
         {
             var data = new ParentesiToken();
             data.RawValue = c;
-            data.Type = (c == '(') ? EShYAlgorithm.ParentesiType.Open : EShYAlgorithm.ParentesiType.Close;
+            data.Type = (c == '(') ? EParentesi.ParentesiState.Open : EParentesi.ParentesiState.Close;
             return data;
         }
     }

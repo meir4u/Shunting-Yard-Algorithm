@@ -42,7 +42,7 @@ namespace ShuntingYardAlgorithm.Factory
                     }
                     else
                     {
-                        throw new Exception("error!");
+                        throw new System.Exception("error!");
                     }
                 }
             }
@@ -60,8 +60,8 @@ namespace ShuntingYardAlgorithm.Factory
             bool result;
             bool right = (resultQueue.Pop() as IBooleanToken).Value;
             bool left = (resultQueue.Pop() as IBooleanToken).Value;
-            EShYAlgorithm.OperatorType Operator = (postfix.Dequeue() as IOperatorToken).Type;
-            if (Operator == EShYAlgorithm.OperatorType.And)
+            EOperator.OperatorType Operator = (postfix.Dequeue() as IOperatorToken).Type;
+            if (Operator == EOperator.OperatorType.And)
             {
                 result = left && right;
             }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ShuntingYardAlgorithm.Exceptions
 {
-    internal class ProcessHandlerNotSupportedException : Exception
+    internal class ProcessHandlerNotSupportedException : System.Exception
     {
         public ProcessHandlerNotSupportedException()
         {
@@ -15,7 +15,7 @@ namespace ShuntingYardAlgorithm.Exceptions
         {
         }
 
-        public ProcessHandlerNotSupportedException(string message, Exception inner)
+        public ProcessHandlerNotSupportedException(string message, System.Exception inner)
             : base(message, inner)
         {
         }

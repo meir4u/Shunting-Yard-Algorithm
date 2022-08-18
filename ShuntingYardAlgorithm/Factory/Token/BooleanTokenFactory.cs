@@ -25,7 +25,7 @@ namespace ShuntingYardAlgorithm.Factory.Token
             }
         }
 
-        internal static IToken Create(EShYAlgorithm.BooleanType type)
+        internal static IToken Create(EOperator.BooleanType type)
         {
             lock (instance)
             {
@@ -34,12 +34,12 @@ namespace ShuntingYardAlgorithm.Factory.Token
             }
         }
 
-        protected IToken create(EShYAlgorithm.BooleanType type)
+        protected IToken create(EOperator.BooleanType type)
         {
             var data = new BooleanToken();
-            data.RawValue = EShYAlgorithm.BooleanType.Positive == type ? 't' : 'f';
+            data.RawValue = EOperator.BooleanType.Positive == type ? 't' : 'f';
             data.Type = type;
-            data.Value = data.Type == EShYAlgorithm.BooleanType.Positive;
+            data.Value = data.Type == EOperator.BooleanType.Positive;
             return data;
         }
 
@@ -50,14 +50,14 @@ namespace ShuntingYardAlgorithm.Factory.Token
             {
                 case 'T':
                 case 't':
-                    token = create(EShYAlgorithm.BooleanType.Positive);
+                    token = create(EOperator.BooleanType.Positive);
                     break;
                 case 'F':
                 case 'f':
-                    token = create(EShYAlgorithm.BooleanType.Negative);
+                    token = create(EOperator.BooleanType.Negative);
                     break;
                 default:
-                    throw new Exception("Token not supported!");
+                    throw new System.Exception("Token not supported!");
             }
             return token;
         }

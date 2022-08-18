@@ -6,6 +6,6 @@ namespace ShuntingYardAlgorithm
 {
     public interface IToken
     {
-        char RawValue { get; set; }
+        object RawValue { get; set; }
     }
 }

@@ -7,8 +7,8 @@ namespace ShuntingYardAlgorithm.Token
 {
     public class BooleanToken : IBooleanToken
     {
-        public EShYAlgorithm.BooleanType Type { get; set; }
+        public EOperator.BooleanType Type { get; set; }
         public bool Value { get; set; }
-        public char RawValue { get; set; }
+        public object RawValue { get; set; }
     }
 }
