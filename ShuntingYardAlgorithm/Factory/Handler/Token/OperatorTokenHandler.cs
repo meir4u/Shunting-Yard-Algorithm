@@ -9,12 +9,13 @@ namespace ShuntingYardAlgorithm.Factory.Handler.Token
 {
     internal class OperatorTokenHandler : TokenHandler
     {
+        private readonly OperatorTokenFactory operatorTokenFactory = new OperatorTokenFactory();
         internal override IToken HandleReqeust(char request)
         {
             IToken token;
             if (request == '&' || request == '|')
             {
-                token = OperatorTokenFactory.Create(request);
+                token = operatorTokenFactory.Create(request);
             }
             else
             {

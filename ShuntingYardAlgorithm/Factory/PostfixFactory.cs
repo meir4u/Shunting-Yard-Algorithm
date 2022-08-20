@@ -1,4 +1,5 @@
 ﻿using ShuntingYardAlgorithm.Enum;
+using ShuntingYardAlgorithm.Exceptions;
 using ShuntingYardAlgorithm.Factory.Handler.Postfix;
 using System;
 using System.Collections.Generic;
@@ -8,30 +9,26 @@ namespace ShuntingYardAlgorithm.Factory
 {
     internal class PostfixFactory
     {
-        private static Lazy<PostfixFactory> lazy = new Lazy<PostfixFactory>(()=>new PostfixFactory(), true);
-        private static PostfixFactory instance { get => lazy.Value; }
-
-        private Stack<IToken> operatorToken = new Stack<IToken>();
+        private readonly Stack<IToken> operatorToken = new Stack<IToken>();
         private Queue<IToken> postfix = new Queue<IToken>();
+        private readonly PostfixProcessHandler postfixProcessHandler;
 
-        private PostfixFactory()
+        internal PostfixFactory()
         {
-
+            postfixProcessHandler = getHandler();
         }
 
-        public static Queue<IToken> Create(Queue<IToken> infix)
+        public Queue<IToken> Create(Queue<IToken> infix)
         {
-            lock (instance)
-            {
-                var result = instance.createPostFix(infix);
-                lazy.Value.resetPostfix();
-                return result;
-            }
+            var result = createPostFix(infix);
+            resetPostfix();
+            return result;
         }
 
         private void resetPostfix()
         {
             postfix = new Queue<IToken>();
+            if (operatorToken.Count > 0) operatorToken.Clear();
         }
 
         private Queue<IToken> createPostFix(Queue<IToken> infix)
@@ -47,25 +44,36 @@ namespace ShuntingYardAlgorithm.Factory
             {
                 postfix.Enqueue(operatorToken.Pop());
             }
+
+            if(postfix.Count == 0)
+            {
+                throw new PostfixEmptyException();
+            }
+
             return postfix;
         }
 
         private void processToken(IToken token)
         {
-            var handler = getHandler();
-
-            handler.HandleReqeust(token, postfix, operatorToken);
+            postfixProcessHandler.HandleReqeust(token, postfix, operatorToken);
         }
 
         private PostfixProcessHandler getHandler()
         {
-            PostfixProcessHandler h1 = new BooleanPostfixProcessHandler();
-            PostfixProcessHandler h2 = new OperatorPostfixProcessHandler();
-            PostfixProcessHandler h3 = new ParentesiPostfixProcessHandler();
+            try
+            {
+                PostfixProcessHandler h1 = new BooleanPostfixProcessHandler();
+                PostfixProcessHandler h2 = new OperatorPostfixProcessHandler();
+                PostfixProcessHandler h3 = new ParentesiPostfixProcessHandler();
 
-            h1.SetSuccessor(h2);
-            h2.SetSuccessor(h3);
-            return h1;
+                h1.SetSuccessor(h2);
+                h2.SetSuccessor(h3);
+                return h1;
+            }
+            catch(Exception ex)
+            {
+                throw new PostfixProcessHandlerException(ex.Message, ex);
+            }
         }
     }
 }

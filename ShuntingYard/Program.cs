@@ -11,7 +11,8 @@ namespace ShuntingYard
             string raw = "(T&F|T)|(F&T|F)";
             string raw2 = "T&F&T&F|T&F&F&F|T|F&F|T&T|F";
 
-            var data = SYAlgorithm.Calculate(raw3);
+            var shuntingYard = new SYAlgorithm();
+            var data = shuntingYard.Calculate(raw3);
             //var data2 = SYAlgorithm.Calculate(raw2);
 
             Console.WriteLine(data.ToString());

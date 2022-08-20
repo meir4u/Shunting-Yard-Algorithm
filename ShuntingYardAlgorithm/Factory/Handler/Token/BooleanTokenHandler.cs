@@ -9,16 +9,17 @@ namespace ShuntingYardAlgorithm.Factory.Handler.Token
 {
     internal class BooleanTokenHandler : TokenHandler
     {
+        private readonly BooleanTokenFactory booleanTokenFactory = new BooleanTokenFactory();
         internal override IToken HandleReqeust(char request)
         {
             IToken token;
             if (request == 't' || request == 'T')
             {
-                token = BooleanTokenFactory.Create(EOperator.BooleanType.Positive);
+                token = booleanTokenFactory.Create(EOperator.BooleanType.Positive);
             }
             else if(request == 'f' || request == 'F')
             {
-                token = BooleanTokenFactory.Create(EOperator.BooleanType.Negative);
+                token = booleanTokenFactory.Create(EOperator.BooleanType.Negative);
             }
             else
             {

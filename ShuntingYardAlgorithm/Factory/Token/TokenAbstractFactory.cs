@@ -9,32 +9,20 @@ namespace ShuntingYardAlgorithm.Factory
 {
     internal class TokenAbstractFactory
     {
-        private static Lazy<TokenAbstractFactory> lazy = new Lazy<TokenAbstractFactory>(()=>new TokenAbstractFactory(), true);
-        private static TokenAbstractFactory instance { get => lazy.Value; }
+        private readonly TokenHandler tokenHandler;
 
-        private TokenAbstractFactory()
+        internal TokenAbstractFactory()
         {
-
+            tokenHandler = getHandler();
         }
 
-        public static IToken Create(char c)
+        public IToken Create(char c)
         {
-            lock (instance)
-            {
-                var result = instance.create(c);
-                return result;
-            }
-        }
+            IToken result;
 
-        private IToken create(char c)
-        {
-            IToken data;
+            result = tokenHandler.HandleReqeust(c);
 
-            var handler = getHandler();
-
-            data = handler.HandleReqeust(c);
-
-            return data;
+            return result;
         }
 
         private TokenHandler getHandler()

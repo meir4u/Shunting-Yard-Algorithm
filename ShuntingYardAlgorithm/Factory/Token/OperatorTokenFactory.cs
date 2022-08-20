@@ -9,29 +9,18 @@ namespace ShuntingYardAlgorithm.Factory.Token
 {
     internal class OperatorTokenFactory
     {
-        private static Lazy<OperatorTokenFactory> lazy = new Lazy<OperatorTokenFactory>(() => new OperatorTokenFactory(), true);
-        private static OperatorTokenFactory instance { get => lazy.Value; }
-
-        private OperatorTokenFactory()
+        internal OperatorTokenFactory()
         {
 
         }
 
-        internal static IToken Create(char c)
+        internal IToken Create(char c)
         {
-            lock (instance)
-            {
-                var token = instance.create(c);
-                return token;
-            }
-        }
-        private IToken create(char c)
-        {
-            var data = new OperatorToken();
-            data.RawValue = c;
-            data.Type = OperatorTokenConfig.GetOperatorType(c.ToString());
-            data.Precedence = OperatorTokenConfig.GetPrecedence(data.Type);
-            return data;
+            var token = new OperatorToken();
+            token.RawValue = c;
+            token.Type = OperatorTokenConfig.GetOperatorType(c.ToString());
+            token.Precedence = OperatorTokenConfig.GetPrecedence(token.Type);
+            return token;
         }
     }
 }

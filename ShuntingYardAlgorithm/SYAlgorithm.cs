@@ -4,33 +4,32 @@ using ShuntingYardAlgorithm.Token;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ShuntingYardAlgorithm.Extension;
 
 namespace ShuntingYardAlgorithm
 {
     public class SYAlgorithm
     {
-        private static Lazy<SYAlgorithm> lazy = new Lazy<SYAlgorithm>(()=>new SYAlgorithm(), true);
-        private static SYAlgorithm instance { get => lazy.Value; }
+        private readonly InfixFactory infixFactory = new InfixFactory();
+        private readonly PostfixFactory postfixFactory = new PostfixFactory();
+        private readonly CalculatorFactory calculatorFactory = new CalculatorFactory();
 
-        private SYAlgorithm()
+        public SYAlgorithm()
         {
 
         }
 
-        public static bool Calculate(string rawData)
+        public bool Calculate(string rawData)
         {
-            lock (instance)
-            {
-                bool result = instance.getResult(rawData);
-                return result;
-            }
+            bool result = getResult(rawData);
+            return result;
         }
 
         private bool getResult(string rawData)
         {
-            Queue<IToken> infix = InfixFactory.create(rawData);
-            Queue<IToken> postfix = PostfixFactory.Create(infix);
-            bool calc = CalculatorFactory.Calculate(postfix);
+            Queue<IToken> infix = infixFactory.create(rawData);
+            Queue<IToken> postfix = postfixFactory.Create(infix);
+            bool calc = calculatorFactory.Calculate(postfix);
 
             return calc;
         } 

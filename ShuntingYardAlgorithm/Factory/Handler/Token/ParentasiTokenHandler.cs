@@ -9,12 +9,13 @@ namespace ShuntingYardAlgorithm.Factory.Handler.Token
 {
     internal class ParentasiTokenHandler : TokenHandler
     {
+        private readonly ParentasiTokenFactory parentasiTokenFactory = new ParentasiTokenFactory();
         internal override IToken HandleReqeust(char request)
         {
             IToken token;
             if (request == '(' || request == ')')
             {
-                token = ParentasiTokenFactory.Create(request);
+                token = parentasiTokenFactory.Create(request);
             }
             else
             {
