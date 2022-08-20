@@ -1,4 +1,5 @@
 ﻿using ShuntingYardAlgorithm.Exceptions;
+using ShuntingYardAlgorithm.Exceptions.Handler;
 using System;
 using System.Collections.Generic;
 using System.Text;

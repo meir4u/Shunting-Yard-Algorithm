@@ -1,5 +1,5 @@
 ﻿using ShuntingYardAlgorithm.Enum;
-using ShuntingYardAlgorithm.Exceptions;
+using ShuntingYardAlgorithm.Exceptions.Postfix;
 using ShuntingYardAlgorithm.Factory.Handler.Postfix;
 using System;
 using System.Collections.Generic;

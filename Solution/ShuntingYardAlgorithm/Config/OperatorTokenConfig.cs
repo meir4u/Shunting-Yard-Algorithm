@@ -1,5 +1,5 @@
 ﻿using ShuntingYardAlgorithm.Enum;
-using ShuntingYardAlgorithm.Exceptions;
+using ShuntingYardAlgorithm.Exceptions.General;
 using System;
 using System.Collections.Generic;
 using System.Linq;
