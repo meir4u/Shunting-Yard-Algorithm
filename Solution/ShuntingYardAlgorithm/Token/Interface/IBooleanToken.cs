@@ -7,7 +7,7 @@ namespace ShuntingYardAlgorithm
 {
     public interface IBooleanToken : IToken
     {
-        EOperator.BooleanType Type { get; set; }
-        bool Value { get; set; }
+        EData.Type Type { get; set; }
+        object Value { get; set; }
     }
 }

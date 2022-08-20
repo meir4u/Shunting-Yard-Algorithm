@@ -30,8 +30,8 @@ namespace ShuntingYardAlgorithm.Factory.Token
         {
             var data = new BooleanToken();
             data.RawValue = EOperator.BooleanType.Positive == type ? 't' : 'f';
-            data.Type = type;
-            data.Value = data.Type == EOperator.BooleanType.Positive;
+            data.Type = EData.Type.Boolean;
+            data.Value = type == EOperator.BooleanType.Positive;
             return data;
         }
 

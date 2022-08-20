@@ -1,4 +1,5 @@
-﻿using ShuntingYardAlgorithm.Enum;
+﻿using ShuntingYardAlgorithm.Config;
+using ShuntingYardAlgorithm.Enum;
 using ShuntingYardAlgorithm.Token;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,8 @@ namespace ShuntingYardAlgorithm.Factory.Token
         {
             var token = new ParentesiToken();
             token.RawValue = c;
-            token.Type = (c == '(') ? EParentesi.ParentesiState.Open : EParentesi.ParentesiState.Close;
+            token.Type = ParentasiTokenConfig.GetParentasiState(c.ToString());
+            token.Precedence = ParentasiTokenConfig.GetPrecedence(token.Type);
             return token;
         }
     }

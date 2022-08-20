@@ -16,8 +16,8 @@ namespace ShuntingYardAlgorithm.Factory.Handler.Calculator
             if ((postfix.Peek() as IOperatorToken).Type == EOperator.OperatorType.Or)
             {
                 bool tempResult;
-                bool right = (resultStack.Pop() as IBooleanToken).Value;
-                bool left = (resultStack.Pop() as IBooleanToken).Value;
+                bool right = (bool)(resultStack.Pop() as IBooleanToken).Value;
+                bool left = (bool)(resultStack.Pop() as IBooleanToken).Value;
                 EOperator.OperatorType Operator = (postfix.Dequeue() as IOperatorToken).Type;
 
                 tempResult = left || right;

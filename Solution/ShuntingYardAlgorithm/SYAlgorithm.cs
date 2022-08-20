@@ -29,7 +29,7 @@ namespace ShuntingYardAlgorithm
         {
             Queue<IToken> infix = infixFactory.create(rawData);
             Queue<IToken> postfix = postfixFactory.Create(infix);
-            bool calc = calculatorFactory.Calculate(postfix);
+            bool calc = (bool)calculatorFactory.Calculate(postfix);
 
             return calc;
         } 

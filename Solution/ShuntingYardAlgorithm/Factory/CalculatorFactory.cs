@@ -26,17 +26,17 @@ namespace ShuntingYardAlgorithm.Factory
             return orCalculatorHandler;
         }
 
-        public bool Calculate(Queue<IToken> postfix)
+        public object Calculate(Queue<IToken> postfix)
         {
             if(postfix == null) throw new PostfixNullException();
             if(postfix.Count == 0) throw new PostfixEmptyException();
 
-            bool result = calculate(postfix);
+            object result = calculate(postfix);
 
             return result;
         }
 
-        private bool calculate(Queue<IToken> postfix)
+        private object calculate(Queue<IToken> postfix)
         {
             Stack<IToken> resultStack = new Stack<IToken>();
             while (postfix.Count > 0)

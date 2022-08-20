@@ -6,7 +6,7 @@ namespace ShuntingYardAlgorithm.Enum
 {
     public class EData
     {
-        public enum DataType
+        public enum Type
         {
             None = 0,
             Number,
