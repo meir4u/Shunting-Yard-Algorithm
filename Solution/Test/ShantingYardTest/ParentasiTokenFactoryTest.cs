@@ -89,5 +89,33 @@ namespace ShantingYardTest
             var parentesiToken = token as ParentesiToken;
             Assert.AreEqual(parentesiToken.Precedence, ParentasiTokenConfig.GetPrecedence(EParentesi.ParentesiState.Close));
         }
+
+        [Test]
+        public void OpenCloseParentesiPresedenseSameTest()
+        {
+            var parentasiTokenFactory = new ParentasiTokenFactory();
+            var openToken = parentasiTokenFactory.Create('(');
+            var closeToken = parentasiTokenFactory.Create(')');
+
+            Assert.AreEqual((openToken as ParentesiToken).Precedence, (closeToken as ParentesiToken).Precedence);
+        }
+
+        [Test]
+        public void OpenParentesiPresedenseZeroTest()
+        {
+            var parentasiTokenFactory = new ParentasiTokenFactory();
+            var token = parentasiTokenFactory.Create('(');
+
+            Assert.AreEqual(0, (token as ParentesiToken).Precedence);
+        }
+
+        [Test]
+        public void CloseParentesiPresedenseZeroTest()
+        {
+            var parentasiTokenFactory = new ParentasiTokenFactory();
+            var token = parentasiTokenFactory.Create(')');
+
+            Assert.AreEqual(0, (token as ParentesiToken).Precedence);
+        }
     }
 }
