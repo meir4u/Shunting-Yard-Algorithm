@@ -11,7 +11,7 @@ namespace ShuntingYardAlgorithm.Factory
         {
 
         }
-        internal Queue<IToken> create(string rawData)
+        internal Queue<IToken> Create(string rawData)
         {
             var result = createInfix(rawData);
             return result;

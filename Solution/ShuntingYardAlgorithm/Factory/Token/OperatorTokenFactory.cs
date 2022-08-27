@@ -20,6 +20,7 @@ namespace ShuntingYardAlgorithm.Factory.Token
             token.RawValue = c;
             token.Type = OperatorTokenConfig.GetOperatorType(c.ToString());
             token.Precedence = OperatorTokenConfig.GetPrecedence(token.Type);
+            token.Associative = OperatorTokenConfig.GetAssociative(token.Type);
             return token;
         }
     }

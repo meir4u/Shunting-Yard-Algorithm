@@ -13,6 +13,7 @@ namespace ShantingYardTest
 {
     class ParentasiTokenFactoryTest
     {
+        ParentasiTokenFactory parentasiTokenFactory = new ParentasiTokenFactory();
         [SetUp]
         public void Setup()
         {
@@ -22,7 +23,6 @@ namespace ShantingYardTest
         [Test]
         public void OpenRawValueTest()
         {
-            var parentasiTokenFactory = new ParentasiTokenFactory();
             var token = parentasiTokenFactory.Create('(');
             Assert.AreEqual(token.RawValue, '(');
         }
@@ -30,7 +30,6 @@ namespace ShantingYardTest
         [Test]
         public void CloseRawValueTest()
         {
-            var parentasiTokenFactory = new ParentasiTokenFactory();
             var token = parentasiTokenFactory.Create(')');
             Assert.AreEqual(token.RawValue, ')');
         }
@@ -38,7 +37,6 @@ namespace ShantingYardTest
         [Test]
         public void OpenCorectTokenCreatedTest()
         {
-            var parentasiTokenFactory = new ParentasiTokenFactory();
             var token = parentasiTokenFactory.Create('(');
             bool isParentesiToken = token is ParentesiToken;
             Assert.IsTrue(isParentesiToken);
@@ -47,7 +45,6 @@ namespace ShantingYardTest
         [Test]
         public void CloseCorectTokenCreatedTest()
         {
-            var parentasiTokenFactory = new ParentasiTokenFactory();
             var token = parentasiTokenFactory.Create(')');
             bool isParentesiToken = token is ParentesiToken;
             Assert.IsTrue(isParentesiToken);
@@ -56,7 +53,6 @@ namespace ShantingYardTest
         [Test]
         public void OpenParentesiStateTest()
         {
-            var parentasiTokenFactory = new ParentasiTokenFactory();
             var token = parentasiTokenFactory.Create('(');
             var parentesiToken = token as ParentesiToken;
             Assert.AreEqual(parentesiToken.Type, EParentesi.ParentesiState.Open);
@@ -65,7 +61,6 @@ namespace ShantingYardTest
         [Test]
         public void CloseParentesiStateTest()
         {
-            var parentasiTokenFactory = new ParentasiTokenFactory();
             var token = parentasiTokenFactory.Create(')');
             var parentesiToken = token as ParentesiToken;
             Assert.AreEqual(parentesiToken.Type, EParentesi.ParentesiState.Close);
@@ -74,7 +69,6 @@ namespace ShantingYardTest
         [Test]
         public void OpenParentesiPresedenseTest()
         {
-            var parentasiTokenFactory = new ParentasiTokenFactory();
             var token = parentasiTokenFactory.Create(')');
             var parentesiToken = token as ParentesiToken;
 
@@ -84,7 +78,6 @@ namespace ShantingYardTest
         [Test]
         public void CloseParentesiPresedenseTest()
         {
-            var parentasiTokenFactory = new ParentasiTokenFactory();
             var token = parentasiTokenFactory.Create(')');
             var parentesiToken = token as ParentesiToken;
             Assert.AreEqual(parentesiToken.Precedence, ParentasiTokenConfig.GetPrecedence(EParentesi.ParentesiState.Close));
@@ -93,7 +86,6 @@ namespace ShantingYardTest
         [Test]
         public void OpenCloseParentesiPresedenseSameTest()
         {
-            var parentasiTokenFactory = new ParentasiTokenFactory();
             var openToken = parentasiTokenFactory.Create('(');
             var closeToken = parentasiTokenFactory.Create(')');
 
@@ -103,7 +95,6 @@ namespace ShantingYardTest
         [Test]
         public void OpenParentesiPresedenseZeroTest()
         {
-            var parentasiTokenFactory = new ParentasiTokenFactory();
             var token = parentasiTokenFactory.Create('(');
 
             Assert.AreEqual(0, (token as ParentesiToken).Precedence);
@@ -112,7 +103,6 @@ namespace ShantingYardTest
         [Test]
         public void CloseParentesiPresedenseZeroTest()
         {
-            var parentasiTokenFactory = new ParentasiTokenFactory();
             var token = parentasiTokenFactory.Create(')');
 
             Assert.AreEqual(0, (token as ParentesiToken).Precedence);

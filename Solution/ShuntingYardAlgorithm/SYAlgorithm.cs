@@ -27,7 +27,7 @@ namespace ShuntingYardAlgorithm
 
         private bool getResult(string rawData)
         {
-            Queue<IToken> infix = infixFactory.create(rawData);
+            Queue<IToken> infix = infixFactory.Create(rawData);
             Queue<IToken> postfix = postfixFactory.Create(infix);
             bool calc = (bool)calculatorFactory.Calculate(postfix);
 

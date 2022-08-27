@@ -1,4 +1,5 @@
 ﻿using ShuntingYardAlgorithm.Enum;
+using ShuntingYardAlgorithm.Exceptions.Config;
 using ShuntingYardAlgorithm.Exceptions.General;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace ShuntingYardAlgorithm.Config
     {
         private readonly Dictionary<string, EOperator.OperatorType> operatorType = new Dictionary<string, EOperator.OperatorType>();
         private readonly Dictionary<EOperator.OperatorType, int> precedence = new Dictionary<EOperator.OperatorType, int>();
+        private readonly Dictionary<EOperator.OperatorType, EOperator.Associative> associative = new Dictionary<EOperator.OperatorType, EOperator.Associative>();
 
         private static Lazy<OperatorTokenConfig> lazy = new Lazy<OperatorTokenConfig>(() => new OperatorTokenConfig(), true);
         private static OperatorTokenConfig instance { get => lazy.Value; }
@@ -21,18 +23,13 @@ namespace ShuntingYardAlgorithm.Config
             {
                 SetOperatorType();
                 SetPrecedence();
+                SetAssociative();
             }
             catch(Exception ex)
             {
-
+                throw new OperatorConfigException(ex.Message, ex);
             }
-        }
-
-        private void SetPrecedence()
-        {
-            precedence[EOperator.OperatorType.And] = 10;
-            precedence[EOperator.OperatorType.Or] = 5;
-        }
+        }        
 
         internal static int GetPrecedence(EOperator.OperatorType operatorType)
         {
@@ -57,6 +54,25 @@ namespace ShuntingYardAlgorithm.Config
 
                 return instance.operatorType[type];
             }
+        }        
+
+        internal static EOperator.Associative GetAssociative(EOperator.OperatorType type)
+        {
+            lock (instance)
+            {
+                if (instance.associative.ContainsKey(type) == false)
+                {
+                    throw new OperatorTypeNotSupportedException();
+                }
+
+                return instance.associative[type];
+            }
+        }
+
+        private void SetPrecedence()
+        {
+            precedence[EOperator.OperatorType.And] = 10;
+            precedence[EOperator.OperatorType.Or] = 5;
         }
 
         private void SetOperatorType()
@@ -65,6 +81,12 @@ namespace ShuntingYardAlgorithm.Config
             operatorType["|"] = EOperator.OperatorType.Or;
 
         }
-                
+
+        private void SetAssociative()
+        {
+            associative[EOperator.OperatorType.And] = EOperator.Associative.Left;
+            associative[EOperator.OperatorType.Or] = EOperator.Associative.Left;
+
+        }
     }
 }
