@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ShuntingYardAlgorithm.Extension;
 
 namespace ShantingYardTest
 {
@@ -26,6 +27,7 @@ namespace ShantingYardTest
         [TestCaseSource("QueueMiddleTokenDataWithParentasi")]
         [TestCaseSource("QueueMiddleMixedTokenDataWithParentasi")]
         [TestCaseSource("QueueMixedTokenDataWithParentasi")]
+        [TestCaseSource("QueueMixedAndMixedTokenDataWithParentasi")]
         public void QueueTokenTypesTest(Queue<IToken> infix, Queue<IToken> expected)
         {
             var infixtokens = new PostfixFactory().Create(infix);
@@ -343,8 +345,8 @@ namespace ShantingYardTest
                 new BooleanTokenFactory().Create('f'),
                 new BooleanTokenFactory().Create('f'),
                 new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
                 new BooleanTokenFactory().Create('f'),
+                new OperatorTokenFactory().Create('&'),
                 new OperatorTokenFactory().Create('&'),
             });
 
@@ -416,6 +418,16 @@ namespace ShantingYardTest
                 new BooleanTokenFactory().Create('t'),
             });
 
+            Queue<IToken> postfixMixedTandT = new Queue<IToken>(new List<IToken>{
+                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create('t'),
+                new OperatorTokenFactory().Create('&'),
+                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create('t'),
+                new OperatorTokenFactory().Create('|'),
+            });
+
             Queue<IToken> infixMixedFandF = new Queue<IToken>(new List<IToken>{
                 new BooleanTokenFactory().Create('f'),
                 new OperatorTokenFactory().Create('&'),
@@ -426,6 +438,16 @@ namespace ShantingYardTest
                 new ParentasiTokenFactory().Create(')'),
                 new OperatorTokenFactory().Create('&'),
                 new BooleanTokenFactory().Create('f'),
+            });
+
+            Queue<IToken> postfixMixedFandF = new Queue<IToken>(new List<IToken>{
+                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create('f'),
+                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create('f'),
+                new OperatorTokenFactory().Create('&'),
+                new OperatorTokenFactory().Create('&'),
             });
 
             Queue<IToken> infixMixedTorT = new Queue<IToken>(new List<IToken>{
@@ -440,6 +462,16 @@ namespace ShantingYardTest
                 new BooleanTokenFactory().Create('t'),
             });
 
+            Queue<IToken> postfixMixedTorT = new Queue<IToken>(new List<IToken>{
+                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create('t'),
+                new OperatorTokenFactory().Create('|'),
+                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create('t'),
+                new OperatorTokenFactory().Create('|'),
+            });
+
             Queue<IToken> infixMixedForF = new Queue<IToken>(new List<IToken>{
                 new BooleanTokenFactory().Create('f'),
                 new OperatorTokenFactory().Create('|'),
@@ -451,15 +483,24 @@ namespace ShantingYardTest
                 new OperatorTokenFactory().Create('|'),
                 new BooleanTokenFactory().Create('f'),
             });
+            Queue<IToken> postfixMixedForF = new Queue<IToken>(new List<IToken>{
+                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create('f'),
+                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create('f'),
+                new OperatorTokenFactory().Create('|'),
+                new OperatorTokenFactory().Create('|'),
+            });
 
 
-            yield return new TestCaseData("t&(t&t)|t", new Queue<IToken>(infixMixedTandT)).SetName("Middle - 4 Same Boolean(t) with & and WithParentasi and Mixed");
+            yield return new TestCaseData(new Queue<IToken>(infixMixedTandT), new Queue<IToken>(postfixMixedTandT)).SetName("Middle - 4 Same Boolean(t) with & and WithParentasi and Mixed");
 
-            yield return new TestCaseData("f&(f|f)&f", new Queue<IToken>(infixMixedFandF)).SetName("Middle - 4 Same Boolean(f) with & and WithParentasi and Mixed");
+            yield return new TestCaseData(new Queue<IToken>(infixMixedFandF), new Queue<IToken>(postfixMixedFandF)).SetName("Middle - 4 Same Boolean(f) with & and WithParentasi and Mixed");
 
-            yield return new TestCaseData("t&(t|t)|t", new Queue<IToken>(infixMixedTorT)).SetName("Middle - 4 Same Boolean(t) with | and WithParentasi and Mixed");
+            yield return new TestCaseData(new Queue<IToken>(infixMixedTorT), new Queue<IToken>(postfixMixedTorT)).SetName("Middle - 4 Same Boolean(t) with | and WithParentasi and Mixed");
 
-            yield return new TestCaseData("f|(f&f)|f", new Queue<IToken>(infixMixedForF)).SetName("Middle - 4 Same Boolean(f) with | and WithParentasi and Mixed");
+            yield return new TestCaseData(new Queue<IToken>(infixMixedForF), new Queue<IToken>(postfixMixedForF)).SetName("Middle - 4 Same Boolean(f) with | and WithParentasi and Mixed");
         }
 
 
@@ -487,6 +528,25 @@ namespace ShantingYardTest
                 new BooleanTokenFactory().Create('f'),
             });
 
+            Queue<IToken> postfixTandT = new Queue<IToken>(new List<IToken>{
+                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create('t'),
+                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create('t'),
+                new OperatorTokenFactory().Create('&'),
+                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create('t'),
+                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create('f'),
+                new OperatorTokenFactory().Create('&'),
+                new OperatorTokenFactory().Create('&'),
+                new OperatorTokenFactory().Create('|'),
+            });
+
+
             Queue<IToken> infixFandF = new Queue<IToken>(new List<IToken>{
                 new BooleanTokenFactory().Create('f'),
                 new OperatorTokenFactory().Create('&'),
@@ -509,6 +569,25 @@ namespace ShantingYardTest
                 new BooleanTokenFactory().Create('f'),
             });
 
+
+            Queue<IToken> postfixFandF = new Queue<IToken>(new List<IToken>{
+                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create('f'),
+                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create('f'),
+                new OperatorTokenFactory().Create('&'),
+                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create('t'),
+                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create('f'),
+                new OperatorTokenFactory().Create('&'),
+                new OperatorTokenFactory().Create('&'),
+                new OperatorTokenFactory().Create('|'),
+            });
+
             Queue<IToken> infixTorT = new Queue<IToken>(new List<IToken>{
                 new BooleanTokenFactory().Create('t'),
                 new OperatorTokenFactory().Create('|'),
@@ -529,6 +608,24 @@ namespace ShantingYardTest
                 new ParentasiTokenFactory().Create(')'),
                 new OperatorTokenFactory().Create('|'),
                 new BooleanTokenFactory().Create('t'),
+            });
+
+            Queue<IToken> postfixTorT = new Queue<IToken>(new List<IToken>{
+                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create('f'),
+                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create('t'),
+                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create('t'),
+                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create('t'),
+                new OperatorTokenFactory().Create('|'),
+                new OperatorTokenFactory().Create('|'),
+                new OperatorTokenFactory().Create('|'),
+                new OperatorTokenFactory().Create('|'),
             });
 
             Queue<IToken> infixForF = new Queue<IToken>(new List<IToken>{
@@ -554,14 +651,37 @@ namespace ShantingYardTest
             });
 
 
-            yield return new TestCaseData("t&(t&t)&t|t&(t&t)&f", new Queue<IToken>(infixTandT)).SetName("Mixed - 8 Mixed Boolean(t) with &  and WithParentasi");
+            Queue<IToken> postfixForF = new Queue<IToken>(new List<IToken>{
+                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create('f'),
+                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create('f'),
+                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create('f'),
+                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create('f'),
+                new OperatorTokenFactory().Create('|'),
+                new OperatorTokenFactory().Create('|'),
+                new OperatorTokenFactory().Create('|'),
+                new OperatorTokenFactory().Create('|'),
+            });
 
-            yield return new TestCaseData("f&(f&f)&f|f&(f&t)&f", new Queue<IToken>(infixFandF)).SetName("Mixed - 8 Mixed Boolean(f) with & and WithParentasi");
+            yield return new TestCaseData(new Queue<IToken>(infixTandT), new Queue<IToken>(postfixTandT)).SetName("Mixed - 8 Mixed Boolean(t) with &  and WithParentasi");
 
-            yield return new TestCaseData("t|(t|f)|t&t|(t|t)|t", new Queue<IToken>(infixTorT)).SetName("Mixed - 8 Mixed Boolean(t) with | and WithParentasi");
+            yield return new TestCaseData(new Queue<IToken>(infixFandF), new Queue<IToken>(postfixFandF)).SetName("Mixed - 8 Mixed Boolean(f) with & and WithParentasi");
 
-            yield return new TestCaseData("t|(f|f)|f&f|(f|f)|f", new Queue<IToken>(infixForF)).SetName("Mixed - 8 Mixed Boolean(f) with | and WithParentasi");
+            yield return new TestCaseData(new Queue<IToken>(infixTorT), new Queue<IToken>(postfixTorT)).SetName("Mixed - 8 Mixed Boolean(t) with | and WithParentasi");
 
+            yield return new TestCaseData(new Queue<IToken>(infixForF), new Queue<IToken>(postfixForF)).SetName("Mixed - 8 Mixed Boolean(f) with | and WithParentasi");
+
+            
+        }
+
+        private static IEnumerable<TestCaseData> QueueMixedAndMixedTokenDataWithParentasi()
+        {
             Queue<IToken> infixMixedTandT = new Queue<IToken>(new List<IToken>{
                 new BooleanTokenFactory().Create('t'),
                 new OperatorTokenFactory().Create('&'),
@@ -584,6 +704,25 @@ namespace ShantingYardTest
                 new BooleanTokenFactory().Create('t'),
             });
 
+            Queue<IToken> postfixMixedTandT = new Queue<IToken>(new List<IToken>{
+                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create('t'),
+                new OperatorTokenFactory().Create('&'),
+                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create('f'),
+                new OperatorTokenFactory().Create('&'),
+                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create('t'),
+                new OperatorTokenFactory().Create('|'),
+                new OperatorTokenFactory().Create('|'),
+                new OperatorTokenFactory().Create('|'),
+            });
+
+
             Queue<IToken> infixMixedFandF = new Queue<IToken>(new List<IToken>{
                 new BooleanTokenFactory().Create('f'),
                 new OperatorTokenFactory().Create('&'),
@@ -604,6 +743,24 @@ namespace ShantingYardTest
                 new ParentasiTokenFactory().Create(')'),
                 new OperatorTokenFactory().Create('&'),
                 new BooleanTokenFactory().Create('t'),
+            });
+
+            Queue<IToken> postfixMixedFandF = new Queue<IToken>(new List<IToken>{
+                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create('f'),
+                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create('f'),
+                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create('t'),
+                new OperatorTokenFactory().Create('&'),
+                new OperatorTokenFactory().Create('&'),
+                new OperatorTokenFactory().Create('&'),
+                new OperatorTokenFactory().Create('&'),
+                new OperatorTokenFactory().Create('&'),
             });
 
             Queue<IToken> infixMixedTorT = new Queue<IToken>(new List<IToken>{
@@ -628,6 +785,24 @@ namespace ShantingYardTest
                 new BooleanTokenFactory().Create('t'),
             });
 
+            Queue<IToken> postfixMixedTorT = new Queue<IToken>(new List<IToken>{
+                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create('t'),
+                new OperatorTokenFactory().Create('|'),
+                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create('t'),
+                new OperatorTokenFactory().Create('|'),
+                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create('t'),
+                new OperatorTokenFactory().Create('|'),
+                new OperatorTokenFactory().Create('|'),
+                new OperatorTokenFactory().Create('|'),
+            });
+
             Queue<IToken> infixMixedForF = new Queue<IToken>(new List<IToken>{
                 new BooleanTokenFactory().Create('f'),
                 new OperatorTokenFactory().Create('|'),
@@ -650,14 +825,32 @@ namespace ShantingYardTest
                 new BooleanTokenFactory().Create('f'),
             });
 
+            Queue<IToken> postfixMixedForF = new Queue<IToken>(new List<IToken>{
+                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create('t'),
+                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create('f'),
+                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create('f'),
+                new OperatorTokenFactory().Create('|'),
+                new OperatorTokenFactory().Create('|'),
+                new OperatorTokenFactory().Create('|'),
+                new OperatorTokenFactory().Create('|'),
+                new OperatorTokenFactory().Create('|'),
+            });
 
-            yield return new TestCaseData("t&(t&t)|t|t&(t&f)|t", new Queue<IToken>(infixMixedTandT)).SetName("Mixed - 8 Mixed Boolean(t) with & and WithParentasi and Mixed");
 
-            yield return new TestCaseData("f&(f|f)&f&f&(f|f)&t", new Queue<IToken>(infixMixedFandF)).SetName("Mixed - 8 Mixed Boolean(f) with & and WithParentasi and Mixed");
+            yield return new TestCaseData(new Queue<IToken>(infixMixedTandT), new Queue<IToken>(postfixMixedTandT)).SetName("Mixed - 8 Mixed Boolean(t) with & and WithParentasi and Mixed");
 
-            yield return new TestCaseData("t&(t|t)|f|t&(t|t)|t", new Queue<IToken>(infixMixedTorT)).SetName("Mixed - 8 Mixed Boolean(t) with | and WithParentasi and Mixed");
+            yield return new TestCaseData(new Queue<IToken>(infixMixedFandF), new Queue<IToken>(postfixMixedFandF)).SetName("Mixed - 8 Mixed Boolean(f) with & and WithParentasi and Mixed");
 
-            yield return new TestCaseData("f|(f&t)|f|f|(f&f)|f", new Queue<IToken>(infixMixedForF)).SetName("Mixed - 8 Mixed Boolean(f) with | and WithParentasi and Mixed");
+            yield return new TestCaseData(new Queue<IToken>(infixMixedTorT), new Queue<IToken>(postfixMixedTorT)).SetName("Mixed - 8 Mixed Boolean(t) with | and WithParentasi and Mixed");
+
+            yield return new TestCaseData(new Queue<IToken>(infixMixedForF), new Queue<IToken>(postfixMixedForF)).SetName("Mixed - 8 Mixed Boolean(f) with | and WithParentasi and Mixed");
         }
     }
 }

@@ -3,6 +3,9 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
+    <PackageProjectUrl>https://github.com/meir4u/Shunting-Yard-Algorithm</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/meir4u/Shunting-Yard-Algorithm</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>

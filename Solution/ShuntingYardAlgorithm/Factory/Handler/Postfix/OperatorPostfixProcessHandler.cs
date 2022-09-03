@@ -10,7 +10,7 @@ namespace ShuntingYardAlgorithm.Factory.Handler.Postfix
         {
             if (token is IOperatorToken)
             {
-                while (operatorToken.Count > 0 && !(operatorToken.Peek() is IParentesiToken) && (operatorToken.Peek() as IOperatorToken).Precedence >= (token as IOperatorToken).Precedence)
+                while (operatorToken.Count > 0 && !(operatorToken.Peek() is IParentesiToken) && (operatorToken.Peek() as IOperatorToken).Precedence > (token as IOperatorToken).Precedence)
                 {
                     postfix.Enqueue(operatorToken.Pop());
                 }
