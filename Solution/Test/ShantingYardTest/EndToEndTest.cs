@@ -33,25 +33,25 @@ namespace ShantingYardTest
 
         private static IEnumerable<TestCaseData> QueueSimpleTokenData()
         {
-            yield return new TestCaseData("t&t", true).SetName("Simple - 2 Same Boolean(t) with &");
-            yield return new TestCaseData("T&T", true).SetName("Simple - 2 Same Boolean(t) with &");
-            yield return new TestCaseData("T&t", true).SetName("Simple - 2 Same Boolean(t) with &");
-            yield return new TestCaseData("t&T", true).SetName("Simple - 2 Same Boolean(t) with &");
+            yield return new TestCaseData("t&t", true).SetName("Simple - 2: t&t");
+            yield return new TestCaseData("T&T", true).SetName("Simple - 2: T&T");
+            yield return new TestCaseData("T&t", true).SetName("Simple - 2: T&t");
+            yield return new TestCaseData("t&T", true).SetName("Simple - 2: t&T");
 
-            yield return new TestCaseData("f&f", false).SetName("Simple - 2 Same Boolean(f) with &");
-            yield return new TestCaseData("F&F", false).SetName("Simple - 2 Same Boolean(f) with &");
-            yield return new TestCaseData("F&f", false).SetName("Simple - 2 Same Boolean(f) with &");
-            yield return new TestCaseData("f&F", false).SetName("Simple - 2 Same Boolean(f) with &");
+            yield return new TestCaseData("f&f", false).SetName("Simple - 2: f&f");
+            yield return new TestCaseData("F&F", false).SetName("Simple - 2: F&F");
+            yield return new TestCaseData("F&f", false).SetName("Simple - 2: F&f");
+            yield return new TestCaseData("f&F", false).SetName("Simple - 2: f&F");
 
-            yield return new TestCaseData("t|t", true).SetName("Simple - 2 Same Boolean(t) with |");
-            yield return new TestCaseData("T|T", true).SetName("Simple - 2 Same Boolean(t) with |");
-            yield return new TestCaseData("T|t", true).SetName("Simple - 2 Same Boolean(t) with |");
-            yield return new TestCaseData("t|T", true).SetName("Simple - 2 Same Boolean(t) with |");
+            yield return new TestCaseData("t|t", true).SetName("Simple - 2: t|t");
+            yield return new TestCaseData("T|T", true).SetName("Simple - 2: T|T");
+            yield return new TestCaseData("T|t", true).SetName("Simple - 2: T|t");
+            yield return new TestCaseData("t|T", true).SetName("Simple - 2: t|T");
 
-            yield return new TestCaseData("f|f", false).SetName("Simple - 2 Same Boolean(f) with |");
-            yield return new TestCaseData("F|F", false).SetName("Simple - 2 Same Boolean(f) with |");
-            yield return new TestCaseData("F|f", false).SetName("Simple - 2 Same Boolean(f) with |");
-            yield return new TestCaseData("f|F", false).SetName("Simple - 2 Same Boolean(f) with |");
+            yield return new TestCaseData("f|f", false).SetName("Simple - 2: f|f");
+            yield return new TestCaseData("F|F", false).SetName("Simple - 2: F|F");
+            yield return new TestCaseData("F|f", false).SetName("Simple - 2: F|f");
+            yield return new TestCaseData("f|F", false).SetName("Simple - 2: f|F");
         }
         
         private static IEnumerable<TestCaseData> QueueSimpleTokenDataWithParentasi()
@@ -92,8 +92,7 @@ namespace ShantingYardTest
             yield return new TestCaseData("t|(t|t)|t", true).SetName("Middle - 4 Same Boolean(t) with | and WithParentasi");
             yield return new TestCaseData("T|(T|T)|T", true).SetName("Middle - 4 Same Boolean(t) with | and WithParentasi");
             yield return new TestCaseData("T|(T|t)|t", true).SetName("Middle - 4 Same Boolean(t) with | and WithParentasi");
-            yield return new TestCaseData("t|(t|T)|T", true
-                ).SetName("Middle - 4 Same Boolean(t) with | and WithParentasi");
+            yield return new TestCaseData("t|(t|T)|T", true).SetName("Middle - 4 Same Boolean(t) with | and WithParentasi");
 
             yield return new TestCaseData("f|(f|f)|f", false).SetName("Middle - 4 Same Boolean(f) with | and WithParentasi");
             yield return new TestCaseData("F|(F|F)|F", false).SetName("Middle - 4 Same Boolean(f) with | and WithParentasi");
