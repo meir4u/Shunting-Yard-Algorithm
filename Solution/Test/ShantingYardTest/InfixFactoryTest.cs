@@ -76,25 +76,25 @@ namespace ShantingYardTest
             });
 
 
-            yield return new TestCaseData("t&t", new Queue<IToken>(expectedTandT)).SetName("Simple - 2 Same Boolean(t) with &");
-            yield return new TestCaseData("T&T", new Queue<IToken>(expectedTandT)).SetName("Simple - 2 Same Boolean(t) with &");
-            yield return new TestCaseData("T&t", new Queue<IToken>(expectedTandT)).SetName("Simple - 2 Same Boolean(t) with &");
-            yield return new TestCaseData("t&T", new Queue<IToken>(expectedTandT)).SetName("Simple - 2 Same Boolean(t) with &");
+            yield return new TestCaseData("t&t", new Queue<IToken>(expectedTandT)).SetName("Simple - 2: t&t");
+            yield return new TestCaseData("T&T", new Queue<IToken>(expectedTandT)).SetName("Simple - 2: T&T");
+            yield return new TestCaseData("T&t", new Queue<IToken>(expectedTandT)).SetName("Simple - 2: T&t");
+            yield return new TestCaseData("t&T", new Queue<IToken>(expectedTandT)).SetName("Simple - 2: t&T");
 
-            yield return new TestCaseData("f&f", new Queue<IToken>(expectedFandF)).SetName("Simple - 2 Same Boolean(f) with &");
-            yield return new TestCaseData("F&F", new Queue<IToken>(expectedFandF)).SetName("Simple - 2 Same Boolean(f) with &");
-            yield return new TestCaseData("F&f", new Queue<IToken>(expectedFandF)).SetName("Simple - 2 Same Boolean(f) with &");
-            yield return new TestCaseData("f&F", new Queue<IToken>(expectedFandF)).SetName("Simple - 2 Same Boolean(f) with &");
+            yield return new TestCaseData("f&f", new Queue<IToken>(expectedFandF)).SetName("Simple - 2: f&f");
+            yield return new TestCaseData("F&F", new Queue<IToken>(expectedFandF)).SetName("Simple - 2: F&F");
+            yield return new TestCaseData("F&f", new Queue<IToken>(expectedFandF)).SetName("Simple - 2: F&f");
+            yield return new TestCaseData("f&F", new Queue<IToken>(expectedFandF)).SetName("Simple - 2: f&F");
 
-            yield return new TestCaseData("t|t", new Queue<IToken>(expectedTorT)).SetName("Simple - 2 Same Boolean(t) with |");
-            yield return new TestCaseData("T|T", new Queue<IToken>(expectedTorT)).SetName("Simple - 2 Same Boolean(t) with |");
-            yield return new TestCaseData("T|t", new Queue<IToken>(expectedTorT)).SetName("Simple - 2 Same Boolean(t) with |");
-            yield return new TestCaseData("t|T", new Queue<IToken>(expectedTorT)).SetName("Simple - 2 Same Boolean(t) with |");
+            yield return new TestCaseData("t|t", new Queue<IToken>(expectedTorT)).SetName("Simple - 2: t|t");
+            yield return new TestCaseData("T|T", new Queue<IToken>(expectedTorT)).SetName("Simple - 2: T|T");
+            yield return new TestCaseData("T|t", new Queue<IToken>(expectedTorT)).SetName("Simple - 2: T|t");
+            yield return new TestCaseData("t|T", new Queue<IToken>(expectedTorT)).SetName("Simple - 2: t|T");
 
-            yield return new TestCaseData("f|f", new Queue<IToken>(expectedForF)).SetName("Simple - 2 Same Boolean(f) with |");
-            yield return new TestCaseData("F|F", new Queue<IToken>(expectedForF)).SetName("Simple - 2 Same Boolean(f) with |");
-            yield return new TestCaseData("F|f", new Queue<IToken>(expectedForF)).SetName("Simple - 2 Same Boolean(f) with |");
-            yield return new TestCaseData("f|F", new Queue<IToken>(expectedForF)).SetName("Simple - 2 Same Boolean(f) with |");
+            yield return new TestCaseData("f|f", new Queue<IToken>(expectedForF)).SetName("Simple - 2: f|f");
+            yield return new TestCaseData("F|F", new Queue<IToken>(expectedForF)).SetName("Simple - 2: F|F");
+            yield return new TestCaseData("F|f", new Queue<IToken>(expectedForF)).SetName("Simple - 2: F|f");
+            yield return new TestCaseData("f|F", new Queue<IToken>(expectedForF)).SetName("Simple - 2: f|F");
         }
         
         private static IEnumerable<TestCaseData> QueueSimpleTokenDataWithParentasi()
