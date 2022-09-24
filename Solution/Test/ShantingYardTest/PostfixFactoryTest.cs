@@ -322,8 +322,8 @@ namespace ShantingYardTest
                 new BooleanTokenFactory().Create('t'),
                 new BooleanTokenFactory().Create('t'),
                 new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
                 new BooleanTokenFactory().Create('t'),
+                new OperatorTokenFactory().Create('&'),
                 new OperatorTokenFactory().Create('&'),
             });
 
@@ -368,8 +368,8 @@ namespace ShantingYardTest
                 new BooleanTokenFactory().Create('t'),
                 new BooleanTokenFactory().Create('t'),
                 new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
                 new BooleanTokenFactory().Create('t'),
+                new OperatorTokenFactory().Create('|'),
                 new OperatorTokenFactory().Create('|'),
             });
 
@@ -390,8 +390,8 @@ namespace ShantingYardTest
                 new BooleanTokenFactory().Create('f'),
                 new BooleanTokenFactory().Create('f'),
                 new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
                 new BooleanTokenFactory().Create('f'),
+                new OperatorTokenFactory().Create('|'),
                 new OperatorTokenFactory().Create('|'),
             });
 
