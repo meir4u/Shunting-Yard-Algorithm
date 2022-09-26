@@ -20,12 +20,12 @@ namespace ShantingYardTest
         }
 
         [Test]
-        [TestCaseSource("QueueSimpleTokenData")]
-        [TestCaseSource("QueueSimpleMixedTokenData")]
-        [TestCaseSource("QueueMiddleTokenData")]
-        [TestCaseSource("QueueMiddleMixedTokenData")]
-        [TestCaseSource("QueueMixedTokenData")]
-        [TestCaseSource("QueueMixedAndMixedTokenData")]
+        [TestCaseSource(nameof(QueueSimpleTokenData))]
+        [TestCaseSource(nameof(QueueSimpleMixedTokenData))]
+        [TestCaseSource(nameof(QueueMiddleTokenData))]
+        [TestCaseSource(nameof(QueueMiddleMixedTokenData))]
+        [TestCaseSource(nameof(QueueMixedTokenData))]
+        [TestCaseSource(nameof(QueueMixedAndMixedTokenData))]
         public void QueueTokenTypesTest(Queue<IToken> postfix, bool expected)
         {
             bool calculatedResult = (bool)new CalculatorFactory().Calculate(postfix);
@@ -60,13 +60,13 @@ namespace ShantingYardTest
                 new OperatorTokenFactory().Create('|'),
             });
             
-            yield return new TestCaseData(new Queue<IToken>(postfixTandT), true).SetName("Simple - 2 Same Boolean(t) with &");
+            yield return new TestCaseData(new Queue<IToken>(postfixTandT), true).SetArgDisplayNames("Simple", postfixTandT.PrintRawData());
 
-            yield return new TestCaseData(new Queue<IToken>(postfixFandF), false).SetName("Simple - 2 Same Boolean(f) with &");
+            yield return new TestCaseData(new Queue<IToken>(postfixFandF), false).SetArgDisplayNames("Simple", postfixFandF.PrintRawData());
 
-            yield return new TestCaseData(new Queue<IToken>(postfixTorT), true).SetName("Simple - 2 Same Boolean(t) with |");
+            yield return new TestCaseData(new Queue<IToken>(postfixTorT), true).SetArgDisplayNames("Simple", postfixTorT.PrintRawData());
 
-            yield return new TestCaseData(new Queue<IToken>(postfixForF), false).SetName("Simple - 2 Same Boolean(f) with |");
+            yield return new TestCaseData(new Queue<IToken>(postfixForF), false).SetArgDisplayNames("Simple", postfixForF.PrintRawData());
            
         }
 
@@ -97,13 +97,13 @@ namespace ShantingYardTest
             });
 
             
-            yield return new TestCaseData(new Queue<IToken>(postfixTorF), true).SetName("Simple - 2 Same Boolean(f) with |");
+            yield return new TestCaseData(new Queue<IToken>(postfixTorF), true).SetArgDisplayNames("Simple", postfixTorF.PrintRawData());
 
-            yield return new TestCaseData(new Queue<IToken>(postfixForT), true).SetName("Simple - 2 Same Boolean(f) with |");
+            yield return new TestCaseData(new Queue<IToken>(postfixForT), true).SetArgDisplayNames("Simple", postfixForT.PrintRawData());
 
-            yield return new TestCaseData(new Queue<IToken>(postfixTandF), false).SetName("Simple - 2 Same Boolean(f) with |");
+            yield return new TestCaseData(new Queue<IToken>(postfixTandF), false).SetArgDisplayNames("Simple", postfixTandF.PrintRawData());
 
-            yield return new TestCaseData(new Queue<IToken>(postfixFandT), false).SetName("Simple - 2 Same Boolean(f) with |");
+            yield return new TestCaseData(new Queue<IToken>(postfixFandT), false).SetArgDisplayNames("Simple", postfixFandT.PrintRawData());
 
         }
 
@@ -150,13 +150,13 @@ namespace ShantingYardTest
                 new OperatorTokenFactory().Create('|'),
             });
 
-            yield return new TestCaseData(new Queue<IToken>(postfixTandT), true).SetName("Middle - 4 Same Boolean(t) with & ");
+            yield return new TestCaseData(new Queue<IToken>(postfixTandT), true).SetArgDisplayNames("Middle", postfixTandT.PrintRawData());
 
-            yield return new TestCaseData(new Queue<IToken>(postfixFandF), false).SetName("Middle - 4 Same Boolean(f) with & ");
+            yield return new TestCaseData(new Queue<IToken>(postfixFandF), false).SetArgDisplayNames("Middle", postfixFandF.PrintRawData());
 
-            yield return new TestCaseData(new Queue<IToken>(postfixTorT), true).SetName("Middle - 4 Same Boolean(t) with | ");
+            yield return new TestCaseData(new Queue<IToken>(postfixTorT), true).SetArgDisplayNames("Middle", postfixTorT.PrintRawData());
 
-            yield return new TestCaseData(new Queue<IToken>(postfixForF), false).SetName("Middle - 4 Same Boolean(f) with | ");
+            yield return new TestCaseData(new Queue<IToken>(postfixForF), false).SetArgDisplayNames("Middle", postfixForF.PrintRawData());
         }
 
         private static IEnumerable<TestCaseData> QueueMiddleMixedTokenData()
@@ -202,13 +202,13 @@ namespace ShantingYardTest
             });
 
 
-            yield return new TestCaseData(new Queue<IToken>(postfixMixedTandT), true).SetName("Middle - 4 Same Boolean(t) with & and Mixed");
+            yield return new TestCaseData(new Queue<IToken>(postfixMixedTandT), true).SetArgDisplayNames("Middle", postfixMixedTandT.PrintRawData());
 
-            yield return new TestCaseData(new Queue<IToken>(postfixMixedFandF), false).SetName("Middle - 4 Same Boolean(f) with & and Mixed");
+            yield return new TestCaseData(new Queue<IToken>(postfixMixedFandF), false).SetArgDisplayNames("Middle", postfixMixedFandF.PrintRawData());
 
-            yield return new TestCaseData(new Queue<IToken>(postfixMixedTorT), true).SetName("Middle - 4 Same Boolean(t) with | and Mixed");
+            yield return new TestCaseData(new Queue<IToken>(postfixMixedTorT), true).SetArgDisplayNames("Middle", postfixMixedTorT.PrintRawData());
 
-            yield return new TestCaseData(new Queue<IToken>(postfixMixedForF), false).SetName("Middle - 4 Same Boolean(f) with | and Mixed");
+            yield return new TestCaseData(new Queue<IToken>(postfixMixedForF), false).SetArgDisplayNames("Middle", postfixMixedForF.PrintRawData());
         }
 
 
@@ -286,13 +286,13 @@ namespace ShantingYardTest
                 new OperatorTokenFactory().Create('|'),
             });
 
-            yield return new TestCaseData(new Queue<IToken>(postfixTandT), true).SetName("Mixed - 8 Mixed Boolean(t) with &  and WithParentasi");
+            yield return new TestCaseData(new Queue<IToken>(postfixTandT), true).SetArgDisplayNames("Mixed", postfixTandT.PrintRawData());
 
-            yield return new TestCaseData(new Queue<IToken>(postfixFandF), false).SetName("Mixed - 8 Mixed Boolean(f) with & and WithParentasi");
+            yield return new TestCaseData(new Queue<IToken>(postfixFandF), false).SetArgDisplayNames("Mixed", postfixFandF.PrintRawData());
 
-            yield return new TestCaseData(new Queue<IToken>(postfixTorT), true).SetName("Mixed - 8 Mixed Boolean(t) with | and WithParentasi");
+            yield return new TestCaseData(new Queue<IToken>(postfixTorT), true).SetArgDisplayNames("Mixed", postfixTorT.PrintRawData());
 
-            yield return new TestCaseData(new Queue<IToken>(postfixForF), true).SetName("Mixed - 8 Mixed Boolean(f) with | and WithParentasi");
+            yield return new TestCaseData(new Queue<IToken>(postfixForF), true).SetArgDisplayNames("Mixed", postfixForF.PrintRawData());
 
             
         }
@@ -372,13 +372,13 @@ namespace ShantingYardTest
             });
 
 
-            yield return new TestCaseData(new Queue<IToken>(postfixMixedTandT), true).SetName("Mixed - 8 Mixed Boolean(t) with & and Mixed");
+            yield return new TestCaseData(new Queue<IToken>(postfixMixedTandT), true).SetArgDisplayNames("Mixed", postfixMixedTandT.PrintRawData());
 
-            yield return new TestCaseData(new Queue<IToken>(postfixMixedFandF), false).SetName("Mixed - 8 Mixed Boolean(f) with & and Mixed");
+            yield return new TestCaseData(new Queue<IToken>(postfixMixedFandF), false).SetArgDisplayNames("Mixed", postfixMixedFandF.PrintRawData());
 
-            yield return new TestCaseData(new Queue<IToken>(postfixMixedTorT), true).SetName("Mixed - 8 Mixed Boolean(t) with | and Mixed");
+            yield return new TestCaseData(new Queue<IToken>(postfixMixedTorT), true).SetArgDisplayNames("Mixed", postfixMixedTorT.PrintRawData());
 
-            yield return new TestCaseData(new Queue<IToken>(postfixMixedForF), false).SetName("Mixed - 8 Mixed Boolean(f) with | and Mixed");
+            yield return new TestCaseData(new Queue<IToken>(postfixMixedForF), false).SetArgDisplayNames("Mixed", postfixMixedForF.PrintRawData());
         }
     }
 }

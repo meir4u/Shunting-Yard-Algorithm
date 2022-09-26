@@ -20,12 +20,12 @@ namespace ShantingYardTest
         }
 
         [Test]
-        [TestCaseSource("QueueSimpleTokenData")]
-        [TestCaseSource("QueueSimpleTokenDataWithParentasi")]
-        [TestCaseSource("QueueMiddleTokenDataWithParentasi")]
-        [TestCaseSource("QueueMiddleTokenMixedDataWithParentas")]
-        [TestCaseSource("QueueMixedTokenDataWithParentasi")]
-        [TestCaseSource("QueueMixedTokenMixedDataWithParentasi")]
+        [TestCaseSource(nameof(QueueSimpleTokenData))]
+        [TestCaseSource(nameof(QueueSimpleTokenDataWithParentasi))]
+        [TestCaseSource(nameof(QueueMiddleTokenDataWithParentasi))]
+        [TestCaseSource(nameof(QueueMiddleTokenMixedDataWithParentas))]
+        [TestCaseSource(nameof(QueueMixedTokenDataWithParentasi))]
+        [TestCaseSource(nameof(QueueMixedTokenMixedDataWithParentasi))]
         public void MainTest(string rawData, bool expected)
         {
             bool result = new SYAlgorithm().Calculate(rawData);
