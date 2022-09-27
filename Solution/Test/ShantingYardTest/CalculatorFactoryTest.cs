@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using ShuntingYardAlgorithm;
 using ShuntingYardAlgorithm.Factory;
-using ShuntingYardAlgorithm.Factory.Token;
+using ShuntingYardAlgorithm.Parser.Factory.Token;
 using System;
 using System.Collections.Generic;
 using System.Linq;

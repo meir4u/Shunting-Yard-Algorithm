@@ -1,15 +1,15 @@
 ﻿using ShuntingYardAlgorithm.Base.Enum;
-using ShuntingYardAlgorithm.Exceptions.Config;
-using ShuntingYardAlgorithm.Exceptions.General;
-using ShuntingYardAlgorithm.Exceptions.Token;
+using ShuntingYardAlgorithm.Base.Exceptions.Config;
+using ShuntingYardAlgorithm.Base.Exceptions.General;
+using ShuntingYardAlgorithm.Base.Exceptions.Token;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ShuntingYardAlgorithm.Config
+namespace ShuntingYardAlgorithm.Base.Config
 {
-    internal class ParentasiTokenConfig
+    public class ParentasiTokenConfig
     {
         private readonly Dictionary<string, EParentesi.ParentesiState> parentasiState = new Dictionary<string, EParentesi.ParentesiState>();
         private readonly Dictionary<EParentesi.ParentesiState, int> precedence = new Dictionary<EParentesi.ParentesiState, int>();
@@ -36,7 +36,7 @@ namespace ShuntingYardAlgorithm.Config
             precedence[EParentesi.ParentesiState.Close] = 0;
         }
 
-        internal static int GetPrecedence(EParentesi.ParentesiState parentesiState)
+        public static int GetPrecedence(EParentesi.ParentesiState parentesiState)
         {
             lock (instance)
             {
@@ -48,7 +48,7 @@ namespace ShuntingYardAlgorithm.Config
             }
         }
 
-        internal static EParentesi.ParentesiState GetParentasiState(string type)
+        public static EParentesi.ParentesiState GetParentasiState(string type)
         {
             lock (instance)
             {

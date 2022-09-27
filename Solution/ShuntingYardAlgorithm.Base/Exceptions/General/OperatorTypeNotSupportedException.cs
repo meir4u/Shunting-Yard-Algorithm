@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShuntingYardAlgorithm.Exceptions.General
+namespace ShuntingYardAlgorithm.Base.Exceptions.General
 {
-    internal class OperatorTypeNotSupportedException : Exception
+    public class OperatorTypeNotSupportedException : Exception
     {
         public OperatorTypeNotSupportedException()
         {

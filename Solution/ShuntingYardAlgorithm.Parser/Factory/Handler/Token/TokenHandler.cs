@@ -1,12 +1,12 @@
 ﻿using ShuntingYardAlgorithm.Base.Token.Interface;
-using ShuntingYardAlgorithm.Exceptions.Token;
+using ShuntingYardAlgorithm.Base.Exceptions.Token;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShuntingYardAlgorithm.Factory.Handler.Token
+namespace ShuntingYardAlgorithm.Parser.Factory.Handler.Token
 {
-    internal abstract class TokenHandler
+    public abstract class TokenHandler
     {
         protected TokenHandler successor = null;
         internal void SetSuccessor(TokenHandler successor)
@@ -14,7 +14,7 @@ namespace ShuntingYardAlgorithm.Factory.Handler.Token
             this.successor = successor;
         }
 
-        internal abstract IToken HandleReqeust(char request);
+        public abstract IToken HandleReqeust(char request);
 
         protected IToken nextHandle(char request)
         {

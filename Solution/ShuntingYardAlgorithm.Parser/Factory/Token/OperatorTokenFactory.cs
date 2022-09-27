@@ -1,20 +1,20 @@
 ﻿using ShuntingYardAlgorithm.Base.Token;
 using ShuntingYardAlgorithm.Base.Token.Interface;
-using ShuntingYardAlgorithm.Config;
+using ShuntingYardAlgorithm.Base.Config;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShuntingYardAlgorithm.Factory.Token
+namespace ShuntingYardAlgorithm.Parser.Factory.Token
 {
-    internal class OperatorTokenFactory
+    public class OperatorTokenFactory
     {
-        internal OperatorTokenFactory()
+        public OperatorTokenFactory()
         {
 
         }
 
-        internal IToken Create(char c)
+        public IToken Create(char c)
         {
             var token = new OperatorToken();
             token.RawValue = c;

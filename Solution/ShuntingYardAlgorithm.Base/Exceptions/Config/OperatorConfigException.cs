@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShuntingYardAlgorithm.Exceptions.Config
+namespace ShuntingYardAlgorithm.Base.Exceptions.Config
 {
-    internal class OperatorConfigException : Exception
+    public class OperatorConfigException : Exception
     {
         public OperatorConfigException()
         {

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using ShuntingYardAlgorithm.Extension;
 using ShuntingYardAlgorithm.Base.Token.Interface;
+using ShuntingYardAlgorithm.Parser.Factory;
 
 namespace ShuntingYardAlgorithm
 {

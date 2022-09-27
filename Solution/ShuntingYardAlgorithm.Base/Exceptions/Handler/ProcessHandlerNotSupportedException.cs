@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShuntingYardAlgorithm.Exceptions.Handler
+namespace ShuntingYardAlgorithm.Base.Exceptions.Handler
 {
-    internal class ProcessHandlerNotSupportedException : System.Exception
+    public class ProcessHandlerNotSupportedException : System.Exception
     {
         public ProcessHandlerNotSupportedException()
         {

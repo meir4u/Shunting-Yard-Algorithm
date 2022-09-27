@@ -1,15 +1,15 @@
 ﻿using ShuntingYardAlgorithm.Base.Token.Interface;
-using ShuntingYardAlgorithm.Factory.Token;
+using ShuntingYardAlgorithm.Parser.Factory.Token;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShuntingYardAlgorithm.Factory.Handler.Token
+namespace ShuntingYardAlgorithm.Parser.Factory.Handler.Token
 {
-    internal class ParentasiTokenHandler : TokenHandler
+    public class ParentasiTokenHandler : TokenHandler
     {
         private readonly ParentasiTokenFactory parentasiTokenFactory = new ParentasiTokenFactory();
-        internal override IToken HandleReqeust(char request)
+        public override IToken HandleReqeust(char request)
         {
             IToken token;
             if (request == '(' || request == ')')

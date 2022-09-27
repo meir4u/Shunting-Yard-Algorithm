@@ -1,6 +1,6 @@
 ﻿using ShuntingYardAlgorithm.Base.Token.Interface;
 using ShuntingYardAlgorithm.Exceptions;
-using ShuntingYardAlgorithm.Exceptions.Handler;
+using ShuntingYardAlgorithm.Base.Exceptions.Handler;
 using System;
 using System.Collections.Generic;
 using System.Text;

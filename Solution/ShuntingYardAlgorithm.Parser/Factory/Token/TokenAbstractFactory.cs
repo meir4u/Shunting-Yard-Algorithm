@@ -1,16 +1,16 @@
 ﻿using ShuntingYardAlgorithm.Base.Token.Interface;
-using ShuntingYardAlgorithm.Factory.Handler.Token;
+using ShuntingYardAlgorithm.Parser.Factory.Handler.Token;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShuntingYardAlgorithm.Factory
+namespace ShuntingYardAlgorithm.Parser.Factory
 {
-    internal class TokenAbstractFactory
+    public class TokenAbstractFactory
     {
         private readonly TokenHandler tokenHandler;
 
-        internal TokenAbstractFactory()
+        public TokenAbstractFactory()
         {
             tokenHandler = getHandler();
         }

@@ -1,14 +1,14 @@
 ﻿using ShuntingYardAlgorithm.Base.Enum;
-using ShuntingYardAlgorithm.Exceptions.Config;
-using ShuntingYardAlgorithm.Exceptions.General;
+using ShuntingYardAlgorithm.Base.Exceptions.Config;
+using ShuntingYardAlgorithm.Base.Exceptions.General;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ShuntingYardAlgorithm.Config
+namespace ShuntingYardAlgorithm.Base.Config
 {
-    internal class OperatorTokenConfig
+    public class OperatorTokenConfig
     {
         private readonly Dictionary<string, EOperator.OperatorType> operatorType = new Dictionary<string, EOperator.OperatorType>();
         private readonly Dictionary<EOperator.OperatorType, int> precedence = new Dictionary<EOperator.OperatorType, int>();
@@ -31,7 +31,7 @@ namespace ShuntingYardAlgorithm.Config
             }
         }        
 
-        internal static int GetPrecedence(EOperator.OperatorType operatorType)
+        public static int GetPrecedence(EOperator.OperatorType operatorType)
         {
             lock (instance)
             {
@@ -43,7 +43,7 @@ namespace ShuntingYardAlgorithm.Config
             }
         }
 
-        internal static EOperator.OperatorType GetOperatorType(string type)
+        public static EOperator.OperatorType GetOperatorType(string type)
         {
             lock (instance)
             {
@@ -56,7 +56,7 @@ namespace ShuntingYardAlgorithm.Config
             }
         }        
 
-        internal static EOperator.Associative GetAssociative(EOperator.OperatorType type)
+        public static EOperator.Associative GetAssociative(EOperator.OperatorType type)
         {
             lock (instance)
             {

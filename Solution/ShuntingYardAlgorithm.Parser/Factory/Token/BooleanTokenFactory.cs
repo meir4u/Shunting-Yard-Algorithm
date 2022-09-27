@@ -1,27 +1,27 @@
 ﻿using ShuntingYardAlgorithm.Base.Enum;
 using ShuntingYardAlgorithm.Base.Token;
 using ShuntingYardAlgorithm.Base.Token.Interface;
-using ShuntingYardAlgorithm.Exceptions.Token;
+using ShuntingYardAlgorithm.Base.Exceptions.Token;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShuntingYardAlgorithm.Factory.Token
+namespace ShuntingYardAlgorithm.Parser.Factory.Token
 {
-    internal class BooleanTokenFactory
+    public class BooleanTokenFactory
     {
-        internal BooleanTokenFactory()
+        public BooleanTokenFactory()
         {
 
         }
 
-        internal IToken Create(char c)
+        public IToken Create(char c)
         {
             var token = create(c);
             return token;
         }
 
-        internal IToken Create(EOperator.BooleanType type)
+        public IToken Create(EOperator.BooleanType type)
         {
             var token = create(type);
             return token;

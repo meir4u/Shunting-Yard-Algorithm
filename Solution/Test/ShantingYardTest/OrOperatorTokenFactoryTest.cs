@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
 using ShuntingYardAlgorithm.Base.Enum;
 using ShuntingYardAlgorithm.Base.Token;
-using ShuntingYardAlgorithm.Config;
-using ShuntingYardAlgorithm.Factory.Token;
+using ShuntingYardAlgorithm.Base.Config;
+using ShuntingYardAlgorithm.Parser.Factory.Token;
 using System;
 using System.Collections.Generic;
 using System.Linq;

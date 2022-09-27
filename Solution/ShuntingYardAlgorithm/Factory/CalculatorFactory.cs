@@ -2,6 +2,7 @@
 using ShuntingYardAlgorithm.Base.Token.Interface;
 using ShuntingYardAlgorithm.Exceptions.Postfix;
 using ShuntingYardAlgorithm.Factory.Handler.Calculator;
+using ShuntingYardAlgorithm.Parser.Factory;
 using System;
 using System.Collections.Generic;
 using System.Text;

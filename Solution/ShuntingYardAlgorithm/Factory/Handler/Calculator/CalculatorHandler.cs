@@ -1,9 +1,10 @@
 ﻿using ShuntingYardAlgorithm.Base.Token.Interface;
 using ShuntingYardAlgorithm.Exceptions.Calculate;
-using ShuntingYardAlgorithm.Exceptions.General;
+using ShuntingYardAlgorithm.Base.Exceptions.General;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ShuntingYardAlgorithm.Parser.Factory;
 
 namespace ShuntingYardAlgorithm.Factory.Handler.Calculator
 {

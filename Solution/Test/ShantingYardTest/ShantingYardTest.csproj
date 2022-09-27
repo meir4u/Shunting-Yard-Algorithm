@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\ShuntingYardAlgorithm.Base\ShuntingYardAlgorithm.Base.csproj" />
+    <ProjectReference Include="..\..\ShuntingYardAlgorithm.Parser\ShuntingYardAlgorithm.Parser.csproj" />
     <ProjectReference Include="..\..\ShuntingYardAlgorithm\ShuntingYardAlgorithm.csproj" />
   </ItemGroup>
 

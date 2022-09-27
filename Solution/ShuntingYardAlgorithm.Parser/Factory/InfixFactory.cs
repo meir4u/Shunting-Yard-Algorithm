@@ -3,16 +3,16 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShuntingYardAlgorithm.Factory
+namespace ShuntingYardAlgorithm.Parser.Factory
 {
-    internal class InfixFactory
+    public class InfixFactory
     {
         private readonly TokenAbstractFactory tokenAbstractFactory = new TokenAbstractFactory();
-        internal InfixFactory()
+        public InfixFactory()
         {
 
         }
-        internal Queue<IToken> Create(string rawData)
+        public Queue<IToken> Create(string rawData)
         {
             var result = createInfix(rawData);
             return result;

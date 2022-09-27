@@ -1,20 +1,20 @@
 ﻿using ShuntingYardAlgorithm.Base.Token;
 using ShuntingYardAlgorithm.Base.Token.Interface;
-using ShuntingYardAlgorithm.Config;
+using ShuntingYardAlgorithm.Base.Config;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShuntingYardAlgorithm.Factory.Token
+namespace ShuntingYardAlgorithm.Parser.Factory.Token
 {
-    internal class ParentasiTokenFactory
+    public class ParentasiTokenFactory
     {
-        internal ParentasiTokenFactory()
+        public ParentasiTokenFactory()
         {
 
         }
 
-        internal IToken Create(char c)
+        public IToken Create(char c)
         {
             var token = new ParentesiToken();
             token.RawValue = c;

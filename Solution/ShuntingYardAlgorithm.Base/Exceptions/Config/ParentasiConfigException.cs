@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShuntingYardAlgorithm.Exceptions.Config
+namespace ShuntingYardAlgorithm.Base.Exceptions.Config
 {
-    internal class ParentasiConfigException : Exception
+    public class ParentasiConfigException : Exception
     {
         public ParentasiConfigException()
         {

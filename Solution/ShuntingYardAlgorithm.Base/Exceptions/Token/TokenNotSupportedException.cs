@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShuntingYardAlgorithm.Exceptions.Token
+namespace ShuntingYardAlgorithm.Base.Exceptions.Token
 {
-    internal class TokenNotSupportedException : System.Exception
+    public class TokenNotSupportedException : System.Exception
     {
         public TokenNotSupportedException()
         {
