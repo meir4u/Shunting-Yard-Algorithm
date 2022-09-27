@@ -1,4 +1,4 @@
-﻿using ShuntingYardAlgorithm.Enum;
+﻿using ShuntingYardAlgorithm.Base.Enum;
 using ShuntingYardAlgorithm.Exceptions.Config;
 using ShuntingYardAlgorithm.Exceptions.General;
 using ShuntingYardAlgorithm.Exceptions.Token;

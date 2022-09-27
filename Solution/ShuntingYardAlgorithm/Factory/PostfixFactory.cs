@@ -1,4 +1,4 @@
-﻿using ShuntingYardAlgorithm.Enum;
+﻿using ShuntingYardAlgorithm.Base.Token.Interface;
 using ShuntingYardAlgorithm.Exceptions.Postfix;
 using ShuntingYardAlgorithm.Factory.Handler.Postfix;
 using System;

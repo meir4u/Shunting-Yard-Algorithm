@@ -1,9 +1,10 @@
-﻿using ShuntingYardAlgorithm.Enum;
+﻿using ShuntingYardAlgorithm.Base.Enum;
+using ShuntingYardAlgorithm.Base.Token.Interface;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShuntingYardAlgorithm.Token
+namespace ShuntingYardAlgorithm.Base.Token
 {
     public class ParentesiToken : IParentesiToken
     {

@@ -1,4 +1,5 @@
-﻿using ShuntingYardAlgorithm.Exceptions.Calculate;
+﻿using ShuntingYardAlgorithm.Base.Token.Interface;
+using ShuntingYardAlgorithm.Exceptions.Calculate;
 using ShuntingYardAlgorithm.Exceptions.General;
 using System;
 using System.Collections.Generic;

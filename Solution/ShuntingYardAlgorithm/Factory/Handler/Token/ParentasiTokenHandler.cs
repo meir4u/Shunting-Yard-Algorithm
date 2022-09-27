@@ -1,6 +1,5 @@
-﻿using ShuntingYardAlgorithm.Enum;
+﻿using ShuntingYardAlgorithm.Base.Token.Interface;
 using ShuntingYardAlgorithm.Factory.Token;
-using ShuntingYardAlgorithm.Token;
 using System;
 using System.Collections.Generic;
 using System.Text;

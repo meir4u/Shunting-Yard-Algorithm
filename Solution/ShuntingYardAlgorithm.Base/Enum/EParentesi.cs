@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShuntingYardAlgorithm.Enum
+namespace ShuntingYardAlgorithm.Base.Enum
 {
     public class EParentesi
     {

@@ -1,10 +1,9 @@
-﻿using ShuntingYardAlgorithm.Enum;
-using ShuntingYardAlgorithm.Factory;
-using ShuntingYardAlgorithm.Token;
+﻿using ShuntingYardAlgorithm.Factory;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using ShuntingYardAlgorithm.Extension;
+using ShuntingYardAlgorithm.Base.Token.Interface;
 
 namespace ShuntingYardAlgorithm
 {

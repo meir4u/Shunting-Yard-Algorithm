@@ -2,13 +2,13 @@
 using ShuntingYardAlgorithm;
 using ShuntingYardAlgorithm.Factory;
 using ShuntingYardAlgorithm.Factory.Token;
-using ShuntingYardAlgorithm.Token;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ShuntingYardAlgorithm.Extension;
+using ShuntingYardAlgorithm.Base.Token.Interface;
 
 namespace ShantingYardTest
 {

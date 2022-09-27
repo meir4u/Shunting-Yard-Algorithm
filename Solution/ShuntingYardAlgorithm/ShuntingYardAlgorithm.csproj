@@ -4,6 +4,9 @@
       <_Parameter1>ShantingYardTest</_Parameter1>
     </AssemblyAttribute>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ShuntingYardAlgorithm.Base\ShuntingYardAlgorithm.Base.csproj" />
+  </ItemGroup>
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>

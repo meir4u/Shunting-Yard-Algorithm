@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShuntingYardAlgorithm
+namespace ShuntingYardAlgorithm.Base.Token.Interface
 {
     public interface IToken
     {

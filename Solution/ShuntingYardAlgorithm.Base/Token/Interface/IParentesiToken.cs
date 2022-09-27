@@ -1,9 +1,9 @@
-﻿using ShuntingYardAlgorithm.Enum;
+﻿using ShuntingYardAlgorithm.Base.Enum;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShuntingYardAlgorithm
+namespace ShuntingYardAlgorithm.Base.Token.Interface
 {
     public interface IParentesiToken : IToken
     {
