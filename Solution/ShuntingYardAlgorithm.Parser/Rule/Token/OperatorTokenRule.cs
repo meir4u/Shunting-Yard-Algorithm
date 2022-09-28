@@ -3,11 +3,12 @@ using ShuntingYardAlgorithm.Parser.Rule.Token.Base;
 using ShuntingYardAlgorithm.Parser.Rule.Token.Result;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ShuntingYardAlgorithm.Parser.Rule.Token
 {
-    internal class BooleanTokenRule : BaseTokenRule
+    internal class OperatorTokenRule : BaseTokenRule
     {
         public override ITokenRuleResult Execute(string rawData)
         {
@@ -28,17 +29,15 @@ namespace ShuntingYardAlgorithm.Parser.Rule.Token
 
         private bool isExact(string v)
         {
-            if (string.IsNullOrEmpty(v) == false || Char.IsLetterOrDigit(v[0])) return false;
+            if (string.IsNullOrEmpty(v) == false || getTypeList().ToList().Contains(v[0].ToString())) return false;
             return true;
         }
 
         protected override IEnumerable<string> getTypeList()
         {
             List<string> data = new List<string>();
-            data.Add("t");
-            data.Add("True");
-            data.Add("f");
-            data.Add("False");
+            data.Add("&");
+            data.Add("|");
             return data;
         }
 

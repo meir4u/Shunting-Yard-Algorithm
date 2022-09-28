@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShuntingYardAlgorithm.Parser.Rule.Token
+namespace ShuntingYardAlgorithm.Parser.Rule.Token.Result
 {
     interface ITokenRuleResult
     {

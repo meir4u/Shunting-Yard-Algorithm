@@ -14,7 +14,9 @@ namespace ShuntingYardAlgorithm.Base.Enum
             Boolean,
             InnumerableNumber,
             InnumerableString,
-            InnumerableBoolean
+            InnumerableBoolean,
+            Parentasi,
+            Operator
         }
     }
 }
