@@ -1,6 +1,7 @@
 ﻿using ShuntingYardAlgorithm.Base.Enum;
 using ShuntingYardAlgorithm.Base.Token.Interface;
 using ShuntingYardAlgorithm.Parser.Factory.Token;
+using ShuntingYardAlgorithm.Parser.Rule.Token.Result;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -28,6 +29,18 @@ namespace ShuntingYardAlgorithm.Parser.Factory.Handler.Token
             return token;
         }
 
-        
+        public override IToken HandleReqeust(ITokenRuleResult request)
+        {
+            IToken token;
+            if (request.Type == EData.Type.Boolean)
+            {
+                token = booleanTokenFactory.Create(request.rawToken);
+            }
+            else
+            {
+                token = nextHandle(request);
+            }
+            return token;
+        }
     }
 }

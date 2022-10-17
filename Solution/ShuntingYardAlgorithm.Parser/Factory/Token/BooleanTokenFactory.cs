@@ -21,6 +21,12 @@ namespace ShuntingYardAlgorithm.Parser.Factory.Token
             return token;
         }
 
+        public IToken Create(string c)
+        {
+            var token = create(c[0]);
+            return token;
+        }
+
         public IToken Create(EOperator.BooleanType type)
         {
             var token = create(type);

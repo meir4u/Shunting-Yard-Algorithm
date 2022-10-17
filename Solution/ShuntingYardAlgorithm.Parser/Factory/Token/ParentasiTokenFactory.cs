@@ -14,7 +14,7 @@ namespace ShuntingYardAlgorithm.Parser.Factory.Token
 
         }
 
-        public IToken Create(char c)
+        public IToken Create(string c)
         {
             var token = new ParentesiToken();
             token.RawValue = c;

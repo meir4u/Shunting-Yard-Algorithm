@@ -14,11 +14,11 @@ namespace ShuntingYardAlgorithm.Parser.Factory.Token
 
         }
 
-        public IToken Create(char c)
+        public IToken Create(string c)
         {
             var token = new OperatorToken();
             token.RawValue = c;
-            token.Type = OperatorTokenConfig.GetOperatorType(c.ToString());
+            token.Type = OperatorTokenConfig.GetOperatorType(c);
             token.Precedence = OperatorTokenConfig.GetPrecedence(token.Type);
             token.Associative = OperatorTokenConfig.GetAssociative(token.Type);
             return token;

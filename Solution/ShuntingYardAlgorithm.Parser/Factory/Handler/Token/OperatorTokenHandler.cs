@@ -1,5 +1,6 @@
 ﻿using ShuntingYardAlgorithm.Base.Token.Interface;
 using ShuntingYardAlgorithm.Parser.Factory.Token;
+using ShuntingYardAlgorithm.Parser.Rule.Token.Result;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,7 +15,7 @@ namespace ShuntingYardAlgorithm.Parser.Factory.Handler.Token
             IToken token;
             if (request == '&' || request == '|')
             {
-                token = operatorTokenFactory.Create(request);
+                token = operatorTokenFactory.Create(request.ToString());
             }
             else
             {
@@ -23,5 +24,18 @@ namespace ShuntingYardAlgorithm.Parser.Factory.Handler.Token
             return token;
         }
 
+        public override IToken HandleReqeust(ITokenRuleResult request)
+        {
+            IToken token;
+            if (request.Type == Base.Enum.EData.Type.Operator)
+            {
+                token = operatorTokenFactory.Create(request.rawToken);
+            }
+            else
+            {
+                token = nextHandle(request);
+            }
+            return token;
+        }
     }
 }

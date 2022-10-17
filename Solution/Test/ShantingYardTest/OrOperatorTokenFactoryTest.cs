@@ -11,8 +11,9 @@ using System.Threading.Tasks;
 
 namespace ShantingYardTest
 {
-    class OrOperatorTokenFactoryTest
+    class OrOperatorTokenFactoryTest : Base
     {
+
         OperatorTokenFactory operatorTokenFactory = new OperatorTokenFactory();
         [OneTimeSetUp]
         public void Setup()
@@ -23,14 +24,14 @@ namespace ShantingYardTest
         [Test]
         public void RawValueTest()
         {
-            var token = operatorTokenFactory.Create('|');
-            Assert.AreEqual(token.RawValue, '|');
+            var token = operatorTokenFactory.Create(OR);
+            Assert.AreEqual(token.RawValue, OR);
         }
 
         [Test]
         public void CorectTokenCreatedTest()
         {
-            var token = operatorTokenFactory.Create('|');
+            var token = operatorTokenFactory.Create(OR);
             bool isOperatorToken = token is OperatorToken;
             Assert.IsTrue(isOperatorToken);
         }
@@ -38,7 +39,7 @@ namespace ShantingYardTest
         [Test]
         public void OperatorTypeTest()
         {
-            var token = operatorTokenFactory.Create('|');
+            var token = operatorTokenFactory.Create(OR);
             var operatorToken = (token as OperatorToken);
             Assert.AreEqual(operatorToken.Type, EOperator.OperatorType.Or);
         }
@@ -46,7 +47,7 @@ namespace ShantingYardTest
         [Test]
         public void OperatorAssociativeTest()
         {
-            var token = operatorTokenFactory.Create('|');
+            var token = operatorTokenFactory.Create(OR);
             var operatorToken = (token as OperatorToken);
             Assert.AreEqual(operatorToken.Associative, OperatorTokenConfig.GetAssociative(EOperator.OperatorType.Or));
         }
@@ -54,7 +55,7 @@ namespace ShantingYardTest
         [Test]
         public void OperatorPresedenseTest()
         {
-            var token = operatorTokenFactory.Create('|');
+            var token = operatorTokenFactory.Create(OR);
             var operatorToken = (token as OperatorToken);
             Assert.AreEqual(operatorToken.Precedence, OperatorTokenConfig.GetPrecedence(EOperator.OperatorType.Or));
         }

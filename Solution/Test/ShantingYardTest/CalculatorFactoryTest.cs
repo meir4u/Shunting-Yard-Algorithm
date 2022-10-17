@@ -12,7 +12,7 @@ using ShuntingYardAlgorithm.Base.Token.Interface;
 
 namespace ShantingYardTest
 {
-    class CalculatorFactoryTest
+    class CalculatorFactoryTest : Base
     {
         [OneTimeSetUp]
         public void Setup()
@@ -38,27 +38,27 @@ namespace ShantingYardTest
         private static IEnumerable<TestCaseData> QueueSimpleTokenData()
         {
             Queue<IToken> postfixTandT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
             });
 
             Queue<IToken> postfixFandF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
             });
                         
             Queue<IToken> postfixTorT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
             });
                         
             Queue<IToken> postfixForF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
             });
             
             yield return new TestCaseData(new Queue<IToken>(postfixTandT), true).SetArgDisplayNames("Simple", postfixTandT.PrintRawData());
@@ -74,27 +74,27 @@ namespace ShantingYardTest
         private static IEnumerable<TestCaseData> QueueSimpleMixedTokenData()
         {
             Queue<IToken> postfixTorF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
             });
 
             Queue<IToken> postfixForT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
             });
 
             Queue<IToken> postfixTandF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
             });
 
             Queue<IToken> postfixFandT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
             });
 
             
@@ -111,44 +111,44 @@ namespace ShantingYardTest
         private static IEnumerable<TestCaseData> QueueMiddleTokenData()
         {
             Queue<IToken> postfixTandT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
             });
 
             Queue<IToken> postfixFandF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
             });
 
             Queue<IToken> postfixTorT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
             });
 
 
             Queue<IToken> postfixForF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
             });
 
             yield return new TestCaseData(new Queue<IToken>(postfixTandT), true).SetArgDisplayNames("Middle", postfixTandT.PrintRawData());
@@ -163,43 +163,43 @@ namespace ShantingYardTest
         private static IEnumerable<TestCaseData> QueueMiddleMixedTokenData()
         {
             Queue<IToken> postfixMixedTandT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
             });
 
             Queue<IToken> postfixMixedFandF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
             });
 
             Queue<IToken> postfixMixedTorT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
             });
 
             Queue<IToken> postfixMixedForF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
             });
 
 
@@ -216,75 +216,75 @@ namespace ShantingYardTest
         private static IEnumerable<TestCaseData> QueueMixedTokenData()
         {
             Queue<IToken> postfixTandT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(OR),
             });
 
             Queue<IToken> postfixFandF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(OR),
             });
 
             Queue<IToken> postfixTorT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
             });
 
             Queue<IToken> postfixForF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
             });
 
             yield return new TestCaseData(new Queue<IToken>(postfixTandT), true).SetArgDisplayNames("Mixed", postfixTandT.PrintRawData());
@@ -301,75 +301,75 @@ namespace ShantingYardTest
         private static IEnumerable<TestCaseData> QueueMixedAndMixedTokenData()
         {
             Queue<IToken> postfixMixedTandT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
             });
 
             Queue<IToken> postfixMixedFandF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
             });
 
             Queue<IToken> postfixMixedTorT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
             });
 
             Queue<IToken> postfixMixedForF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
             });
 
 

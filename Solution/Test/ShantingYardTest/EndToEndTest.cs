@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ShantingYardTest
 {
-    class EndToEndTest
+    class EndToEndTest : Base
     {
         [OneTimeSetUp]
         public void Setup()

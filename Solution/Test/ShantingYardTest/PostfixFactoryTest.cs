@@ -12,7 +12,7 @@ using ShuntingYardAlgorithm.Parser.Factory.Token;
 
 namespace ShantingYardTest
 {
-    class PostfixFactoryTest
+    class PostfixFactoryTest : Base
     {
         [OneTimeSetUp]
         public void Setup()
@@ -44,50 +44,50 @@ namespace ShantingYardTest
         private static IEnumerable<TestCaseData> QueueSimpleTokenData()
         {
             Queue<IToken> infixTandT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t')
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE)
             });
             Queue<IToken> postfixTandT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
             });
 
             Queue<IToken> infixFandF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
             });
 
             Queue<IToken> postfixFandF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
             });
 
             Queue<IToken> infixTorT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t')
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE)
             });
             
             Queue<IToken> postfixTorT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
             });
 
             Queue<IToken> infixForF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f')
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE)
             });
             
             Queue<IToken> postfixForF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
             });
             
             yield return new TestCaseData(new Queue<IToken>(infixTandT), new Queue<IToken>(postfixTandT)).SetArgDisplayNames(infixTandT.PrintRawData(), postfixTandT.PrintRawData());
@@ -103,52 +103,52 @@ namespace ShantingYardTest
         private static IEnumerable<TestCaseData> QueueSimpleMixedTokenData()
         {
             Queue<IToken> infixTorF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
             });
 
             Queue<IToken> postfixTorF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
             });
 
             Queue<IToken> infixForT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t')
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE)
             });
 
             Queue<IToken> postfixForT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
             });
 
 
             Queue<IToken> infixTandF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f')
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE)
             });
 
             Queue<IToken> postfixTandF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
             });
 
             Queue<IToken> infixFandT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t')
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE)
             });
 
             Queue<IToken> postfixFandT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
             });
 
             
@@ -166,61 +166,61 @@ namespace ShantingYardTest
         private static IEnumerable<TestCaseData> QueueSimpleTokenDataWithParentasi()
         {
             Queue<IToken> infixTandT = new Queue<IToken>(new List<IToken>{
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new ParentasiTokenFactory().Create(')'),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
             });
 
             Queue<IToken> postfixTandT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
             });
 
             Queue<IToken> infixFandF = new Queue<IToken>(new List<IToken>{
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new ParentasiTokenFactory().Create(')'),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
             });
 
 
             Queue<IToken> postfixFandF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
             });
 
             Queue<IToken> infixTorT = new Queue<IToken>(new List<IToken>{
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t'),
-                new ParentasiTokenFactory().Create(')'),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
             });
             
             Queue<IToken> postfixTorT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
             });
 
             Queue<IToken> infixForF = new Queue<IToken>(new List<IToken>{
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
-                new ParentasiTokenFactory().Create(')'),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
             });
 
 
             Queue<IToken> postfixForF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
             });
 
 
@@ -237,61 +237,61 @@ namespace ShantingYardTest
         private static IEnumerable<TestCaseData> QueueSimpleMixedTokenDataWithParentasi()
         {
             Queue<IToken> infixTandF = new Queue<IToken>(new List<IToken>{
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new ParentasiTokenFactory().Create(')'),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
             });
 
             Queue<IToken> postfixTandF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
             });
 
             Queue<IToken> infixFandT = new Queue<IToken>(new List<IToken>{
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new ParentasiTokenFactory().Create(')'),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
             });
 
 
             Queue<IToken> postfixFandT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
             });
 
             Queue<IToken> infixTorF = new Queue<IToken>(new List<IToken>{
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
-                new ParentasiTokenFactory().Create(')'),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
             });
 
             Queue<IToken> postfixTorF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
             });
 
             Queue<IToken> infixForT = new Queue<IToken>(new List<IToken>{
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t'),
-                new ParentasiTokenFactory().Create(')'),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
             });
 
 
             Queue<IToken> postfixForT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
             });
 
 
@@ -307,93 +307,93 @@ namespace ShantingYardTest
         private static IEnumerable<TestCaseData> QueueMiddleTokenDataWithParentasi()
         {
             Queue<IToken> infixTandT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new ParentasiTokenFactory().Create(')'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
             });
 
             Queue<IToken> postfixTandT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
             });
 
 
             Queue<IToken> infixFandF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new ParentasiTokenFactory().Create(')'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
             });
 
             Queue<IToken> postfixFandF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
             });
 
 
             Queue<IToken> infixTorT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t'),
-                new ParentasiTokenFactory().Create(')'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE),
             });
 
             Queue<IToken> postfixTorT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
             });
 
             Queue<IToken> infixForF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
-                new ParentasiTokenFactory().Create(')'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
             });
 
             Queue<IToken> postfixForF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
             });
 
             yield return new TestCaseData(new Queue<IToken>(infixTandT), new Queue<IToken>(postfixTandT)).SetArgDisplayNames(infixTandT.PrintRawData(), postfixTandT.PrintRawData());
@@ -408,90 +408,90 @@ namespace ShantingYardTest
         private static IEnumerable<TestCaseData> QueueMiddleMixedTokenDataWithParentasi()
         {
             Queue<IToken> infixMixedTandT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new ParentasiTokenFactory().Create(')'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE),
             });
 
             Queue<IToken> postfixMixedTandT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
             });
 
             Queue<IToken> infixMixedFandF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
-                new ParentasiTokenFactory().Create(')'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
             });
 
             Queue<IToken> postfixMixedFandF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
             });
 
             Queue<IToken> infixMixedTorT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t'),
-                new ParentasiTokenFactory().Create(')'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE),
             });
 
             Queue<IToken> postfixMixedTorT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
             });
 
             Queue<IToken> infixMixedForF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new ParentasiTokenFactory().Create(')'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
             });
             Queue<IToken> postfixMixedForF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
             });
 
 
@@ -508,166 +508,166 @@ namespace ShantingYardTest
         private static IEnumerable<TestCaseData> QueueMixedTokenDataWithParentasi()
         {
             Queue<IToken> infixTandT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new ParentasiTokenFactory().Create(')'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new ParentasiTokenFactory().Create(')'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
             });
 
             Queue<IToken> postfixTandT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(OR),
             });
 
 
             Queue<IToken> infixFandF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new ParentasiTokenFactory().Create(')'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new ParentasiTokenFactory().Create(')'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
             });
 
 
             Queue<IToken> postfixFandF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(OR),
             });
 
             Queue<IToken> infixTorT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
-                new ParentasiTokenFactory().Create(')'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t'),
-                new ParentasiTokenFactory().Create(')'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE),
             });
 
             Queue<IToken> postfixTorT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
             });
 
             Queue<IToken> infixForF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
-                new ParentasiTokenFactory().Create(')'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
-                new ParentasiTokenFactory().Create(')'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
             });
 
 
             Queue<IToken> postfixForF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
             });
 
             yield return new TestCaseData(new Queue<IToken>(infixTandT), new Queue<IToken>(postfixTandT)).SetArgDisplayNames(infixTandT.PrintRawData(), postfixTandT.PrintRawData());
@@ -684,164 +684,164 @@ namespace ShantingYardTest
         private static IEnumerable<TestCaseData> QueueMixedAndMixedTokenDataWithParentasi()
         {
             Queue<IToken> infixMixedTandT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new ParentasiTokenFactory().Create(')'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new ParentasiTokenFactory().Create(')'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE),
             });
 
             Queue<IToken> postfixMixedTandT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
             });
 
 
             Queue<IToken> infixMixedFandF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
-                new ParentasiTokenFactory().Create(')'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
-                new ParentasiTokenFactory().Create(')'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
             });
 
             Queue<IToken> postfixMixedFandF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
-                new OperatorTokenFactory().Create('&'),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
+                new OperatorTokenFactory().Create(AND),
             });
 
             Queue<IToken> infixMixedTorT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t'),
-                new ParentasiTokenFactory().Create(')'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t'),
-                new ParentasiTokenFactory().Create(')'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('t'),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(TRUE),
             });
 
             Queue<IToken> postfixMixedTorT = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
             });
 
             Queue<IToken> infixMixedForF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('t'),
-                new ParentasiTokenFactory().Create(')'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new ParentasiTokenFactory().Create('('),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new ParentasiTokenFactory().Create(')'),
-                new OperatorTokenFactory().Create('|'),
-                new BooleanTokenFactory().Create('f'),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(TRUE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new ParentasiTokenFactory().Create(OPEN_PARENTASI),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new ParentasiTokenFactory().Create(CLOSE_PARENTASI),
+                new OperatorTokenFactory().Create(OR),
+                new BooleanTokenFactory().Create(FALSE),
             });
 
             Queue<IToken> postfixMixedForF = new Queue<IToken>(new List<IToken>{
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('t'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('&'),
-                new BooleanTokenFactory().Create('f'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
-                new OperatorTokenFactory().Create('|'),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(TRUE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(AND),
+                new BooleanTokenFactory().Create(FALSE),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
+                new OperatorTokenFactory().Create(OR),
             });
 
 
